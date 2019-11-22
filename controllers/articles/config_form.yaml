@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: crydesign.wiki::lang.article.article
+
+# Model Form Field configuration
+form: $/crydesign/wiki/models/article/fields.yaml
+
+# Model Class name
+modelClass: Crydesign\Wiki\Models\Article
+
+# Default redirect location
+defaultRedirect: crydesign/wiki/articles
+
+# Create page
+create:
+    title: crydesign.wiki::lang.article.create_article
+    redirect: crydesign/wiki/articles/update/:id
+    redirectClose: crydesign/wiki/articles
+
+# Update page
+update:
+    title: crydesign.wiki::lang.article.edit_article
+    redirect: crydesign/wiki/articles
+    redirectClose: crydesign/wiki/articles
+
+# Preview page
+preview:
+    title: crydesign.wiki::lang.article.preview_article

@@ -22,7 +22,7 @@ class Plugin extends \System\Classes\PluginBase
         return [
             'wiki' => [
                 'label'       => Lang::get('crydesign.wiki::lang.app.name'),
-                'url'         => Backend::url('crydesign/wiki/dashboard'),
+                'url'         => Backend::url('crydesign/wiki/articles'),
                 'icon'        => 'icon-wikipedia-w',
                 'permissions' => ['crydesign.wiki.*'],
                 'order'       => 500,

@@ -1,0 +1,16 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    title:
+        label: crydesign.wiki::lang.article.title 
+    category:
+        label: crydesign.wiki::lang.article.category
+    template:
+        label: crydesign.wiki::lang.article.template
+    article:
+        type: richeditor
+        size: huge
+    tags:
+        label: crydesign.wiki::lang.article.tags
