@@ -1,0 +1,29 @@
+{
+    "name": "crydesign/wiki-plugin",
+    "type": "october-plugin",
+    "description": "Wiki OctoberCMS plugin",
+    "keywords": ["october", "cms", "wiki", "plugin"],
+    "license": "MIT",
+
+    "authors": [
+        {
+            "name": "Dmitry Bykov",
+            "email": "cryden_da@mail.ru",
+            "role": "Author"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "composer/installers": "~1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Crydesign\\Wiki\\": ""
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
