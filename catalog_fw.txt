@@ -1,0 +1,39 @@
+universes
+    universe_title
+        wiki
+        sources
+            videogames
+                series 
+                    serie
+                        videogame
+                            editions
+                                edition (*)
+            books
+                series 
+                    serie
+                        book
+                            editions
+                                edition (*)
+        
+
+Templates:
+
+universe
+    permalink = ':title'
+    wikilink = ':title'
+    infobox {
+
+    }
+    article
+
+books
+    permalink = ':universe/books
+    wikilink = ':universe_(book_series)'
+
+book_series
+    permalink = ':universe/books/:book_series
+    wikilink = ':title_(book_series)'
+
+book
+    permalink = ':universe/books/:book_series/:title'
+    wikilink = ':title_(book)'

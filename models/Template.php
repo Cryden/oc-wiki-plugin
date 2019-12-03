@@ -22,6 +22,8 @@ class Template extends Model
      */
     protected $fillable = [];
 
+    protected $jsonable = ['fields'];
+
     /**
      * @var array Relations
      */

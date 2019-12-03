@@ -3,6 +3,23 @@
 # ===================================
 
 fields:
-    id:
-        label: ID
-        disabled: true
+    title:
+        label: Title
+    fields:
+        label: Fields
+        type: repeater
+        titleFrom: title_when_collapsed
+        form:
+            fields:
+                field_title:
+                    label: Field Title
+                    span: storm
+                    cssClass: col-lg-6
+                field_type:
+                    label: Field Type
+                    type: dropdown
+                    options:
+                        - 1
+                        - 2
+                    span: storm
+                    cssClass: col-lg-6

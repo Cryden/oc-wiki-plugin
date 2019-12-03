@@ -11,8 +11,12 @@ return [
         'preview_article' => 'Предпросмотр статьи',
         'title' => 'Название статьи',
         'article' => 'Статья',
+        'articles' => 'Статьи',
         'category' => 'Раздел',
         'tags' => 'Тэги',
         'template' => 'Шаблон'
+    ],
+    'template' => [
+        'templates' => 'Шаблоны'
     ]
 ];

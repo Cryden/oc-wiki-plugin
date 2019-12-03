@@ -26,7 +26,21 @@ class Plugin extends \System\Classes\PluginBase
                 'icon'        => 'icon-wikipedia-w',
                 'permissions' => ['crydesign.wiki.*'],
                 'order'       => 500,
-            ]
+                'sideMenu' => [
+                    'articles' => [
+                        'label'       => Lang::get('crydesign.wiki::lang.article.articles'),
+                        'icon'        => 'icon-file-text-o',
+                        'url'         => Backend::url('crydesign/wiki/articles'),
+                        'permissions' => [],
+                    ],
+                    'templates' => [
+                        'label'       => Lang::get('crydesign.wiki::lang.template.templates'),
+                        'icon'        => 'icon-th-large',
+                        'url'         => Backend::url('crydesign/wiki/templates'),
+                        'permissions' => [],
+                    ]
+                ]
+            ],
         ];
     }
 }

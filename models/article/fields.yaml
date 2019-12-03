@@ -5,12 +5,13 @@
 fields:
     title:
         label: crydesign.wiki::lang.article.title 
-    category:
+    _category:
         label: crydesign.wiki::lang.article.category
-    template:
+    _template:
         label: crydesign.wiki::lang.article.template
+        type: dropdown
     article:
-        type: richeditor
+        type: editorjs
         size: huge
-    tags:
+    _tags:
         label: crydesign.wiki::lang.article.tags

@@ -1,6 +1,7 @@
 <?php namespace Crydesign\Wiki\Models;
 
 use Model;
+use BackendAuth;
 
 /**
  * Article Model
@@ -17,6 +18,8 @@ class Article extends Model
 
     protected $fillable = [];
 
+    public $timestamps = false;
+ 
     public $hasOne = [];
     public $hasMany = [];
     public $belongsTo = [];
@@ -33,5 +36,12 @@ class Article extends Model
     public function getRevisionableUser()
     {
         return BackendAuth::getUser()->id;
-    }   
+    }
+
+    /** Template Dropdow options */
+    public function getTemplateOptions() 
+    {
+        $options = \Crydesign\Wiki\Models\Template::lists('title', 'id');
+        return $options;
+    }
 }

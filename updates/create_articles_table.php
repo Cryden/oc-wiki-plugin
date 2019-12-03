@@ -12,8 +12,8 @@ class CreateArticlesTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('title');
-            $table->longText('article');
-            $table->json('infobox');
+            $table->json('article');
+            $table->json('infobox')->nullable();
         });
     }
 

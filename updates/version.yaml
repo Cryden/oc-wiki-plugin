@@ -1,4 +1,5 @@
 1.0.1: 
     - Wiki Plugin for October CMS
     - create_pages_table.php
-    - create_articles_table.php 
+    - create_articles_table.php
+    - create_templates_table.php 
