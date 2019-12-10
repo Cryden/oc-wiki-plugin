@@ -20,6 +20,6 @@ class Templates extends Controller
     {
         parent::__construct();
 
-        BackendMenu::setContext('Crydesign.Wiki', 'wiki', 'templates');
+        // BackendMenu::setContext('Crydesign.Wiki', 'wiki', 'templates');
     }
 }

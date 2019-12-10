@@ -6,3 +6,8 @@ columns:
     id:
         label: ID
         searchable: true
+    title:
+        label: Title
+    slug:
+        label: Pseudo
+        

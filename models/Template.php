@@ -12,6 +12,8 @@ class Template extends Model
      */
     public $table = 'crydesign_wiki_templates';
 
+    public $timestamps = false;
+
     /**
      * @var array Guarded fields
      */
@@ -22,7 +24,7 @@ class Template extends Model
      */
     protected $fillable = [];
 
-    protected $jsonable = ['fields'];
+    protected $jsonable = ['metainfo'];
 
     /**
      * @var array Relations
@@ -36,4 +38,25 @@ class Template extends Model
     public $morphMany = [];
     public $attachOne = [];
     public $attachMany = [];
+
+    public function getTemplateField()
+    {
+        $options = [
+            'date'  => "Date",
+            'img'   => "Image",
+            'str'   => "String"
+        ];
+
+        $template = \Crydesign\Wiki\Models\Template::all()->lists('title', 'slug');
+
+        $options = array_merge($options, $template);
+
+        return $options;
+    }
+
+    public function beforeSave()
+    {
+        
+    }
+
 }

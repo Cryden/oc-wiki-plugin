@@ -12,8 +12,8 @@ class CreateTemplatesTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('title');
-            $table->json('fields');
-            $table->timestamps();
+            $table->string('slug');
+            $table->json('metainfo');
         });
     }
 

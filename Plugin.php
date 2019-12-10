@@ -3,6 +3,7 @@
 namespace Crydesign\Wiki;
 
 use Backend;
+use Event;
 use Lang;
 
 class Plugin extends \System\Classes\PluginBase
@@ -42,5 +43,17 @@ class Plugin extends \System\Classes\PluginBase
                 ]
             ],
         ];
+    }
+
+    public function boot()
+    {
+        Event::listen('backend.form.extendFields', function($controlLibrary) {
+            $controlLibrary->AddJs([
+                //'$/crydesign/wiki/assets/js/editorjs/editor.js',
+            ]);
+            $controlLibrary->AddCss([
+                '$/crydesign/wiki/assets/scss/styles.scss',
+            ]);
+        });
     }
 }

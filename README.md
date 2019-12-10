@@ -8,3 +8,6 @@
 - Tags System
 - Multilanguage Support
 - Wikitext (import/export)
+
+- Add Select2 formwidget Support
+- unique Template slug

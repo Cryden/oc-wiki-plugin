@@ -5,21 +5,27 @@
 fields:
     title:
         label: Title
-    fields:
-        label: Fields
+    slug:
+        label: Slug
+        dependsOn: title
+        preset:
+            field: title
+            type: camel
+    metainfo:
+        label: Meta Info
         type: repeater
-        titleFrom: title_when_collapsed
         form:
             fields:
                 field_title:
                     label: Field Title
                     span: storm
                     cssClass: col-lg-6
+                    required: true
                 field_type:
                     label: Field Type
-                    type: dropdown
-                    options:
-                        - 1
-                        - 2
+                    type: taglist
+                    mode: array
+                    useKey: true
+                    options: getTemplateField
                     span: storm
                     cssClass: col-lg-6
