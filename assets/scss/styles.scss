@@ -1,6 +1,53 @@
 .content {
-    background: #000;
+    background: #34495E;
     width: 100%;
-    min-height: 100vh;
-    padding: 0 60px;
+    min-height: 100%;
+    padding: 0 48px;
+}   
+
+.content__logo {
+    display: flex;
+    height: 60px;
+    align-items: center;
+}
+
+.content__templates {
+    padding-top: 60px;
+    display: flex;
+}
+
+.content__templates a, .content__templates a:hover {
+    text-decoration: none;
+}
+
+.template {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid #fff;
+    color: #fff;
+    width: 120px;
+    height: 120px;
+    margin-right: 20px;
+}
+
+.template:hover {
+    color: #aaa;
+    border: 1px solid #aaa;
+    box-shadow: 4px 4px 10px #14212E;
+}
+
+.template p {
+    margin: 0;
+}
+
+
+.template__icon {
+    padding: 20px 0;
+}
+
+.template__text {
+    font-size: 12px;
+    text-align: center;
 }
