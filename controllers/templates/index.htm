@@ -7,6 +7,17 @@
             <img class="template__icon" src="./../../../plugins/crydesign/wiki/assets/images/add.svg" alt="logo">
             <p class="template__text">New Template</p>
         </a>
+    
+    <?php 
+        foreach ($this->templates as $template) {
+            echo '
+            <a class="template" href="templates/update/'.$template->id.'">
+                <img class="template__icon" src="./../../../plugins/crydesign/wiki/assets/images/add.svg" alt="logo">
+                <p class="template__text">'.$template->title.'</p>
+            </a>
+            ';
+        }
+    ?>
     </div>
 </div>
 

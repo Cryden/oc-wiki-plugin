@@ -10,13 +10,12 @@ class Templates extends Controller
 {
     public $implement = [
         'Backend.Behaviors.FormController',
-        'Backend.Behaviors.ListController'
     ];
 
     public $formConfig = 'config_form.yaml';
-    public $listConfig = 'config_list.yaml';
 
     public $bodyClass = 'compact-container';
+    public $templates = '';
 
     public function __construct()
     {
@@ -28,5 +27,7 @@ class Templates extends Controller
     {
         $this->pageTitle = 'Панель управления';
         $this->bodyClass = 'compact-container';
+
+        $this->templates = \Crydesign\Wiki\Models\Template::all();
     }
 }
