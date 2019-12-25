@@ -11,3 +11,4 @@
 
 - Add Select2 formwidget Support
 - unique Template slug
+- add search on Templates Page

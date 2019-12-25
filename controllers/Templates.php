@@ -2,6 +2,7 @@
 
 use BackendMenu;
 use Backend\Classes\Controller;
+use Flash;
 
 /**
  * Templates Back-end Controller
@@ -20,14 +21,17 @@ class Templates extends Controller
     public function __construct()
     {
         parent::__construct();
-        $this->addCss('/plugins/crydesign/wiki/assets/scss/styles.scss');
+        $this->addCss('/plugins/crydesign/wiki/assets/sass/styles.scss');
     }
 
     public function index()
     {
         $this->pageTitle = 'Панель управления';
         $this->bodyClass = 'compact-container';
+    }
 
-        $this->templates = \Crydesign\Wiki\Models\Template::all();
+    public function onDelete() {
+        \Crydesign\Wiki\Models\Template::destroy($_POST['id']);
+        // Flash::info($_POST['id']);
     }
 }

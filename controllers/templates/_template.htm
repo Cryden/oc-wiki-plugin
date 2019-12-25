@@ -1,0 +1,21 @@
+<?php 
+    $this->templates = \Crydesign\Wiki\Models\Template::all();
+    foreach ($this->templates as $template) {
+        echo '
+        <div class="template">
+            <img class="template__icon" src="./../../../plugins/crydesign/wiki/assets/images/add.svg" alt="logo">
+            <p class="template__text">'.$template->title.'</p>
+            <div class="template__menu">
+                <a href="templates/update/'.$template->id.'"><i class="icon icon-edit"></i></a>
+                <a
+                    data-request="onDelete"
+                    data-request-data="id: \''.$template->id.'\'"
+                    data-request-confirm="Are you sure you want to delete the selected Template?"
+                    data-request-update="template: \'.templates\'">
+                    <i class="icon icon-trash"></i>
+                </a>
+            </div>
+        </div>
+        ';
+    }
+?>

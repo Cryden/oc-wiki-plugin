@@ -3,7 +3,6 @@
 namespace Crydesign\Wiki;
 
 use Backend;
-use Event;
 use Lang;
 
 class Plugin extends \System\Classes\PluginBase
