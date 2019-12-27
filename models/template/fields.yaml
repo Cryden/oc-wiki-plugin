@@ -5,13 +5,9 @@
 fields:
     title:
         label: Title
-    slug:
-        label: Slug
-        dependsOn: title
-        preset:
-            field: title
-            type: camel
-    metainfo:
+    _icon:
+        label: Icon
+    shema:
         label: Meta Info
         type: repeater
         form:

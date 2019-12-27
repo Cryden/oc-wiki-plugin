@@ -37,3 +37,75 @@ book_series
 book
     permalink = ':universe/books/:book_series/:title'
     wikilink = ':title_(book)'
+
+
+
+CATALOG
+
+-{universes}
+
+-{person}
+
+-{company}
+
+-{in_work}
+
+
+
+Template Example
+
+-BOOK 
+
+-- fields
+
+    id: id
+    wiki_link: = (title__book)
+    permalink: 
+
+    title: string
+    title_original: string
+    author: {person}
+    copyrightYear: date
+    in_language: string
+    type: -options-
+    genre: {literature_genre}
+    about: editor
+
+    relation:
+        {settings}
+        {series}
+        {editions}
+        {characters}
+
+
+-LITERATURE_GENRE
+
+-- fields
+
+    title: 
+    about:
+
+    relation:
+        {book}
+        {person}
+
+
+- TEMPLATES TEMPLATE (BASE)
+
+-- fields 
+
+    id: id
+    wiki_link: = (title__template-title)
+    permalink: 
+
+
+
+- Template (Model)
+
+    id: id
+    title: string
+    shema: json
+
+    nested_tree
+    datastamp
+

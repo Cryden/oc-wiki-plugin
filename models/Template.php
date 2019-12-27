@@ -12,8 +12,6 @@ class Template extends Model
      */
     public $table = 'crydesign_wiki_templates';
 
-    public $timestamps = false;
-
     /**
      * @var array Guarded fields
      */
@@ -24,7 +22,7 @@ class Template extends Model
      */
     protected $fillable = [];
 
-    protected $jsonable = ['metainfo'];
+    protected $jsonable = ['shema'];
 
     /**
      * @var array Relations
@@ -47,9 +45,14 @@ class Template extends Model
             'str'   => "String"
         ];
 
-        $template = \Crydesign\Wiki\Models\Template::all()->lists('title', 'slug');
+        $template = \Crydesign\Wiki\Models\Template::get()->pluck('title', 'id');
 
-        $options = array_merge($options, $template);
+        $template = collect($template);
+        $options = collect($options);
+
+        $options = $template->merge($options);
+
+        trace_log($options);
 
         return $options;
     }
