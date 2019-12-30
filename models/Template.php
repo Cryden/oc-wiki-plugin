@@ -20,7 +20,7 @@ class Template extends Model
     /**
      * @var array Fillable fields
      */
-    protected $fillable = [];
+    protected $fillable = ['title'];
 
     protected $jsonable = ['shema'];
 
@@ -40,26 +40,50 @@ class Template extends Model
     public function getTemplateField()
     {
         $options = [
-            'date'  => "Date",
-            'img'   => "Image",
-            'str'   => "String"
+            '_date'  => "Date",
+            '_img'   => "Image",
+            '_str'   => "String"
         ];
 
-        $template = \Crydesign\Wiki\Models\Template::get()->pluck('title', 'id');
+        $template = \Crydesign\Wiki\Models\Template::get()->lists('title', 'index');
 
-        $template = collect($template);
-        $options = collect($options);
+        $template = $template + $options;
 
-        $options = $template->merge($options);
-
-        trace_log($options);
-
-        return $options;
+        return $template;
     }
 
-    public function beforeSave()
-    {
-        
-    }
+    public function beforeSave() {
+        if ($this->index{0} != '_') {
+            $this->index = '_'.mb_strtolower($this->title);
+        }
 
+        if (is_array($this->shema)) {
+
+            $new_shema = [];
+            foreach ($this->shema as $key1 => $value) {
+                $shema_array = [];
+                foreach ($value as $key2 => $ft) {
+                    // trace_log($key2, ' ', $ft);
+                    if ($key2 == 'field_type') {
+                        $type_array = [];
+                        foreach ($ft as $key3 => $value) {
+                            if ($value{0} != '_') {
+                                $new_template = Template::create(['title' => $value ]);
+                                $shema_array[$key2][$key3] = $new_template->index;
+                            } else {
+                                $shema_array[$key2][$key3] = $value;
+                            }
+                        }
+
+                    } else {
+                        $shema_array[$key2] = $ft;
+                    }
+                }
+
+                $new_shema[$key1] = $shema_array;
+            }
+
+            $this->shema = $new_shema;
+        }
+    }
 }

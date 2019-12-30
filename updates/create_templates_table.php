@@ -11,8 +11,9 @@ class CreateTemplatesTable extends Migration
         Schema::create('crydesign_wiki_templates', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->string('index')->nullable();
             $table->string('title');
-            $table->json('shema');
+            $table->json('shema')->nullable();
             $table->integer('parent_id')->nullable();
             $table->integer('nest_left')->nullable();
             $table->integer('nest_right')->nullable();
