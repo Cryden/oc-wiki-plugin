@@ -50,7 +50,6 @@ class Articles extends Controller
                             'type' => 'taglist',
                             'options' => $options,
                             'mode' => 'array',
-                            'useKey' => true
                         ];
                         break;
                 }

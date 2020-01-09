@@ -16,7 +16,7 @@ class Article extends Model
 
     protected $revisionable = ['title', 'article', 'shema'];
 
-    protected $fillable = [];
+    protected $fillable = ['title', 'template'];
 
     protected $jsonable = ['article'];
 
@@ -59,7 +59,13 @@ class Article extends Model
 
         foreach ($fields_array as $key => $value) {
             if ($value['field_type'][0] != '_str' && $value['field_type'][0] != '_img' && $value['field_type'][0] != '_date') {
-                trace_log($this->article[$value['field_title']]);
+                $field_type = $value['field_type'][0];
+                foreach ($this->article[$value['field_title']] as $value) {
+                    if (!(\Crydesign\Wiki\Models\Article::where('title', $value)->first())) {
+                        Article::create([ 'title' => $value, 'template' => $field_type ]);
+                        // trace_log($value.' new post');
+                    }
+                }
             }
         }
         
