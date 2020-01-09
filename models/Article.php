@@ -14,9 +14,11 @@ class Article extends Model
 
     protected $guarded = ['*'];
 
-    protected $revisionable = ['title', 'article', 'infobox'];
+    protected $revisionable = ['title', 'article', 'shema'];
 
     protected $fillable = [];
+
+    protected $jsonable = ['article'];
 
     public $timestamps = false;
  
@@ -41,7 +43,25 @@ class Article extends Model
     /** Template Dropdow options */
     public function getTemplateOptions() 
     {
-        $options = \Crydesign\Wiki\Models\Template::lists('title', 'id');
+        $options = \Crydesign\Wiki\Models\Template::get()->lists('title', 'index');
         return $options;
+    }
+
+    public function filterFields($fields, $context = null)
+    {
+        return $fields;
+    }
+
+    public function beforeSave() 
+    {
+        $template = \Crydesign\Wiki\Models\Template::where('index',$this->template)->first();
+        $fields_array = $template->shema;
+
+        foreach ($fields_array as $key => $value) {
+            if ($value['field_type'][0] != '_str' && $value['field_type'][0] != '_img' && $value['field_type'][0] != '_date') {
+                trace_log($this->article[$value['field_title']]);
+            }
+        }
+        
     }
 }

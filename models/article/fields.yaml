@@ -5,13 +5,11 @@
 fields:
     title:
         label: crydesign.wiki::lang.article.title 
-    _category:
-        label: crydesign.wiki::lang.article.category
-    _template:
+    template@create:
         label: crydesign.wiki::lang.article.template
         type: dropdown
-    article:
-        type: editorjs
-        size: huge
-    _tags:
-        label: crydesign.wiki::lang.article.tags
+    template@update:
+        label: crydesign.wiki::lang.article.template
+        type: dropdown
+        disabled: true
+
