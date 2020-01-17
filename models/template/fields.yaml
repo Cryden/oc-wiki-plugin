@@ -5,23 +5,82 @@
 fields:
     title:
         label: Title
-    _icon:
+        span: storm
+        cssClass: col-lg-8
+        required: true
+    icon:
         label: Icon
+        type: dropdown
+        options: iconList
+        default: oc-icon-file
+        span: storm
+        cssClass: col-lg-4
+    permalink:
+        label: Permalink
+        span: storm
+        cssClass: col-lg-12
+
+    parent:
+        label: Parent
+        tab: Информация
+        type: relation
+        nameFrom: title
+        emptyOption: Без категории
+        cssClass: col-lg-12
+
     shema:
         label: Meta Info
         type: repeater
-        form:
-            fields:
-                field_title:
-                    label: Field Title
-                    span: storm
-                    cssClass: col-lg-6
-                    required: true
-                field_type:
-                    label: Field Type
-                    type: taglist
-                    mode: array
-                    useKey: true
-                    options: getTemplateField
-                    span: storm
-                    cssClass: col-lg-6
+        prompt: Chose field type
+        groups:
+            standart:
+                name: Standart
+                description: Basic text field
+                icon: icon-list
+                fields:
+                    field_title:
+                        label: Field Title
+                        span: storm
+                        cssClass: col-lg-6
+                        required: true
+                    field_type:
+                        label: Field Type
+                        type: dropdown
+                        options: getStandartTemplateField
+                        span: storm
+                        cssClass: col-lg-6
+            relation:
+                name: Relation
+                description: Relation text field
+                icon: icon-sitemap
+                fields:
+                    alias:
+                        label: Alias
+                        span: storm 
+                        cssClass: col-lg-3
+                    field_title:
+                        label: Field Title
+                        span: storm
+                        cssClass: col-lg-3
+                        required: true
+                    field_type:
+                        label: Field Type
+                        type: taglist
+                        mode: array
+                        useKey: true
+                        options: getRelationTemplateField
+                        span: storm
+                        cssClass: col-lg-6
+            filter:
+                name: Filter
+                description: Filter text field
+                icon: icon-filter
+                fields:
+                    field_title:
+                        label: Field Title
+                        span: storm
+                        cssClass: col-lg-6
+                        required: true
+                    field_type:
+                        label: Field Type
+

@@ -49,7 +49,7 @@ class Article extends Model
 
     public function filterFields($fields, $context = null)
     {
-        return $fields;
+        $fields->_test->value = 'changed';
     }
 
     public function beforeSave() 
@@ -61,13 +61,13 @@ class Article extends Model
             if ($value['field_type'][0] != '_str' && $value['field_type'][0] != '_img' && $value['field_type'][0] != '_date') {
                 $field_type = $value['field_type'][0];
                 foreach ($this->article[$value['field_title']] as $value) {
-                    if (!(\Crydesign\Wiki\Models\Article::where('title', $value)->first())) {
+                    $keys = explode("_", $value);
+                    // trace_log($keys);
+                    if (!(\Crydesign\Wiki\Models\Article::where('id', $keys[0])->first())) {
                         Article::create([ 'title' => $value, 'template' => $field_type ]);
-                        // trace_log($value.' new post');
                     }
                 }
             }
         }
-        
     }
 }

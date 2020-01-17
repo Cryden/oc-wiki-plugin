@@ -85,6 +85,11 @@
     padding: 20px 0;
 }
 
+.template [class^="oc-icon-"]:before, .template [class*=" oc-icon-"]:before {
+    margin-right: 0;
+    font-size: 32px;
+}
+
 .template__menu a:hover .icon-trash {
     color: #CF4242;
 }

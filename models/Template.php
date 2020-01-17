@@ -7,6 +7,8 @@ use Model;
  */
 class Template extends Model
 {
+    use \October\Rain\Database\Traits\NestedTree;
+    
     /**
      * @var string The database table used by the model.
      */
@@ -37,19 +39,32 @@ class Template extends Model
     public $attachOne = [];
     public $attachMany = [];
 
-    public function getTemplateField()
+    public function iconList()
+    {
+        return \Crydesign\Wiki\Classes\IconList::getList();
+    }
+
+    public function getStandartTemplateField()
     {
         $options = [
+            '_str'   => "String",
             '_date'  => "Date",
             '_img'   => "Image",
-            '_str'   => "String"
         ];
 
+        return $options;
+    }
+
+    public function getRelationTemplateField()
+    {
         $template = \Crydesign\Wiki\Models\Template::get()->lists('title', 'index');
 
-        $template = $template + $options;
-
         return $template;
+    }
+
+    public function getFilterTemplateField()
+    {
+        return;
     }
 
     public function beforeSave() {

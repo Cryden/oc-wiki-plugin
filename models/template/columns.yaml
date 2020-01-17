@@ -9,5 +9,5 @@ columns:
     title:
         label: Title
     slug:
-        label: Pseudo
+        label: Slug
         

@@ -11,11 +11,13 @@ class Templates extends Controller
 {
     public $implement = [
         'Backend.Behaviors.FormController',
+        'Backend.Behaviors.ListController',
     ];
 
     public $formConfig = 'config_form.yaml';
+    public $listConfig = 'config_list.yaml';
 
-    public $bodyClass = 'compact-container';
+    //public $bodyClass = 'compact-container';
     public $templates = '';
 
     public function __construct()
@@ -24,14 +26,14 @@ class Templates extends Controller
         $this->addCss('/plugins/crydesign/wiki/assets/sass/styles.scss');
     }
 
-    public function index()
-    {
-        $this->pageTitle = 'Панель управления';
-        $this->bodyClass = 'compact-container';
-    }
+    // public function index()
+    // {
+    //     $this->pageTitle = 'Панель управления';
+    //     $this->bodyClass = 'compact-container';
+    // }
 
-    public function onDelete() {
-        \Crydesign\Wiki\Models\Template::destroy($_POST['id']);
-        // Flash::info($_POST['id']);
-    }
+    // public function onDelete() {
+    //     \Crydesign\Wiki\Models\Template::destroy($_POST['id']);
+    //     // Flash::info($_POST['id']);
+    // }
 }

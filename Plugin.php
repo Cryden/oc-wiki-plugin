@@ -3,10 +3,28 @@
 namespace Crydesign\Wiki;
 
 use Backend;
+use Event;
 use Lang;
 
 class Plugin extends \System\Classes\PluginBase
 {
+    public function boot() 
+    {
+        Event::listen('backend.form.refresh', function ($formWidget, $result) {
+            $formWidget->addFields([
+                'article[myfield]' => [
+                    'label'   => 'My Field',
+                    'comment' => 'This is a custom field I have added.',
+                ],
+            ]);
+
+            $result['#Form'] = $formWidget->render();
+
+            // \Debugbar::info($result);
+
+            return $result;
+        });
+    }
     public function pluginDetails()
     {
         return [

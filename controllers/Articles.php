@@ -1,5 +1,6 @@
 <?php namespace Crydesign\Wiki\Controllers;
 
+use DB;
 use BackendMenu;
 use Backend\Classes\Controller;
 
@@ -45,7 +46,8 @@ class Articles extends Controller
                         break;
 
                     default:
-                        $options = \Crydesign\Wiki\Models\Article::where('template', $value['field_type'][0])->lists('title', 'id');
+                        $options = \Crydesign\Wiki\Models\Article::where('template', $value['field_type'][0])->select(DB::raw("concat (id, template) as indexed, title"))->lists('title', 'indexed');
+                        // dd($options);
                         $field_options = [
                             'type' => 'taglist',
                             'options' => $options,
@@ -53,6 +55,8 @@ class Articles extends Controller
                         ];
                         break;
                 }
+
+                //trace_log($field_options);
 
                 $fields = $fields + [
                     'article['.$value['field_title'].']' => [
