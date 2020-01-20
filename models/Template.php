@@ -72,33 +72,39 @@ class Template extends Model
             $this->index = '_'.mb_strtolower($this->title);
         }
 
-        if (is_array($this->shema)) {
+        // if (is_array($this->shema)) {
 
-            $new_shema = [];
-            foreach ($this->shema as $key1 => $value) {
-                $shema_array = [];
-                foreach ($value as $key2 => $ft) {
-                    // trace_log($key2, ' ', $ft);
-                    if ($key2 == 'field_type') {
-                        $type_array = [];
-                        foreach ($ft as $key3 => $value) {
-                            if ($value{0} != '_') {
-                                $new_template = Template::create(['title' => $value ]);
-                                $shema_array[$key2][$key3] = $new_template->index;
-                            } else {
-                                $shema_array[$key2][$key3] = $value;
-                            }
-                        }
+        //     $new_shema = [];
+        //     foreach ($this->shema as $key1 => $value) {
+        //         $shema_array = [];
+        //         foreach ($value as $key2 => $ft) {
+        //             // trace_log($key2, ' ', $ft);
+        //             if ($key2 == 'field_type') {
+        //                 $type_array = [];
+        //                 foreach ($ft as $key3 => $value) {
+        //                     if ($value{0} != '_') {
+        //                         $new_template = Template::create(['title' => $value ]);
+        //                         $shema_array[$key2][$key3] = $new_template->index;
+        //                     } else {
+        //                         $shema_array[$key2][$key3] = $value;
+        //                     }
+        //                 }
 
-                    } else {
-                        $shema_array[$key2] = $ft;
-                    }
-                }
+        //             } else {
+        //                 $shema_array[$key2] = $ft;
+        //             }
+        //         }
 
-                $new_shema[$key1] = $shema_array;
-            }
+        //         $new_shema[$key1] = $shema_array;
+        //     }
 
-            $this->shema = $new_shema;
-        }
+        //     $this->shema = $new_shema;
+        // }
+    }
+
+    public function filterFields($fields, $context = null)
+    {
+        \Debugbar::info($fields);
+        // $fields->permalink->value = $fields->parent->value.'/'.$fields->slug->value;
     }
 }

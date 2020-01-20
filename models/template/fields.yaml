@@ -4,7 +4,7 @@
 
 fields:
     title:
-        label: Title
+        label: Template Title
         span: storm
         cssClass: col-lg-8
         required: true
@@ -15,18 +15,27 @@ fields:
         default: oc-icon-file
         span: storm
         cssClass: col-lg-4
-    permalink:
-        label: Permalink
-        span: storm
-        cssClass: col-lg-12
-
     parent:
-        label: Parent
+        label: Parent Category
         tab: Информация
         type: relation
         nameFrom: title
         emptyOption: Без категории
-        cssClass: col-lg-12
+        span: storm
+        cssClass: col-lg-3
+    slug:
+        label: Slug
+        span: storm
+        cssClass: col-lg-3
+    permalink:
+        label: Permalink
+        span: storm
+        cssClass: col-lg-6
+        dependsOn:
+            - parent
+            - slug
+
+
 
     shema:
         label: Meta Info
@@ -35,7 +44,7 @@ fields:
         groups:
             standart:
                 name: Standart
-                description: Basic text field
+                description: Basic fields
                 icon: icon-list
                 fields:
                     field_title:
@@ -48,7 +57,11 @@ fields:
                         type: dropdown
                         options: getStandartTemplateField
                         span: storm
-                        cssClass: col-lg-6
+                        cssClass: col-lg-3
+                    alias:
+                        label: Alias
+                        span: storm 
+                        cssClass: col-lg-3
             relation:
                 name: Relation
                 description: Relation text field
@@ -65,8 +78,7 @@ fields:
                         required: true
                     field_type:
                         label: Field Type
-                        type: taglist
-                        mode: array
+                        type: dropdown
                         useKey: true
                         options: getRelationTemplateField
                         span: storm
