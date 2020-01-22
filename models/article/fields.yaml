@@ -12,6 +12,4 @@ fields:
         label: crydesign.wiki::lang.article.template
         type: dropdown
         disabled: true
-    _test:
-        dependsOn: template
 

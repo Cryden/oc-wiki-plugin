@@ -88,6 +88,8 @@ class Template extends Model
         // Меняем постоянные ссылки в случае смены слага
         $childrens = $this->getChildren();
 
+        trace_log($this->getParent());
+
         if ($childrens->first() != null) {
             if($childrens->first()->parent_permalink <> $this->permalink) {
                 foreach ($childrens as $children) {

@@ -49,7 +49,7 @@ class Article extends Model
 
     public function filterFields($fields, $context = null)
     {
-        $fields->_test->value = 'changed';
+        // $fields->_test->value = 'changed';
     }
 
     public function beforeSave() 
@@ -57,17 +57,17 @@ class Article extends Model
         $template = \Crydesign\Wiki\Models\Template::where('index',$this->template)->first();
         $fields_array = $template->shema;
 
-        foreach ($fields_array as $key => $value) {
-            if ($value['field_type'][0] != '_str' && $value['field_type'][0] != '_img' && $value['field_type'][0] != '_date') {
-                $field_type = $value['field_type'][0];
-                foreach ($this->article[$value['field_title']] as $value) {
-                    $keys = explode("_", $value);
-                    // trace_log($keys);
-                    if (!(\Crydesign\Wiki\Models\Article::where('id', $keys[0])->first())) {
-                        Article::create([ 'title' => $value, 'template' => $field_type ]);
-                    }
-                }
-            }
-        }
+        // foreach ($fields_array as $key => $value) {
+        //     if ($value['field_type'][0] != '_str' && $value['field_type'][0] != '_img' && $value['field_type'][0] != '_date') {
+        //         $field_type = $value['field_type'][0];
+        //         foreach ($this->article[$value['field_title']] as $value) {
+        //             $keys = explode("_", $value);
+        //             // trace_log($keys);
+        //             if (!(\Crydesign\Wiki\Models\Article::where('id', $keys[0])->first())) {
+        //                 Article::create([ 'title' => $value, 'template' => $field_type ]);
+        //             }
+        //         }
+        //     }
+        // }
     }
 }
