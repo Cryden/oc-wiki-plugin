@@ -3,6 +3,13 @@
 # ===================================
 
 fields:
+    main_section:
+        label: Main info
+        type: section
+        comment: This section contains main info about the template.
+        span: storm
+        cssClass: col-lg-12
+
     title:
         label: Template Title
         span: storm
@@ -15,6 +22,18 @@ fields:
         default: oc-icon-file
         span: storm
         cssClass: col-lg-4
+    description:
+        label: Description
+        span: storm
+        cssClass: col-lg-12
+        type: textarea
+
+    permalink_section:
+        label: Permalink Pattern
+        type: section
+        comment: Create Permalink Pattern.
+        span: storm
+        cssClass: col-lg-12
     parent:
         label: Parent Category
         tab: Информация
@@ -28,19 +47,25 @@ fields:
         span: storm
         cssClass: col-lg-3
     permalink:
-        label: Permalink
+        label: Permalink Pattern
         span: storm
         cssClass: col-lg-6
         dependsOn:
             - parent
             - slug
 
-
+    shema_section:
+        label: Article Template
+        type: section
+        comment: This section contains info about the Article Shema.
+        span: storm
+        cssClass: col-lg-12
 
     shema:
-        label: Meta Info
         type: repeater
-        prompt: Chose field type
+        prompt: Add fields
+        span: storm
+        cssClass: col-lg-12
         groups:
             standart:
                 name: Standart

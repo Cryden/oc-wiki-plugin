@@ -8,6 +8,7 @@ columns:
         searchable: true
     title:
         label: Title
-    slug:
-        label: Slug
-        
+    description:
+        label: Description
+    permalink:
+        label: Permalink

@@ -13,10 +13,13 @@ class CreateTemplatesTable extends Migration
             $table->increments('id');
             $table->string('index')->nullable();
             $table->string('title');
-            $table->string('permalink')->nullable();
+            $table->string('description')->nullable();
             $table->string('icon')->nullable();
+            $table->string('slug')->nullable();
+            $table->string('permalink')->nullable();
             $table->json('shema')->nullable();
             $table->integer('parent_id')->nullable();
+            $table->string('parent_permalink')->nullable();
             $table->integer('nest_left')->nullable();
             $table->integer('nest_right')->nullable();
             $table->integer('nest_depth')->nullable();

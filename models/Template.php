@@ -68,43 +68,44 @@ class Template extends Model
     }
 
     public function beforeSave() {
+        //\Debugbar::info($this);
+
         if ($this->index{0} != '_') {
             $this->index = '_'.mb_strtolower($this->title);
         }
 
-        // if (is_array($this->shema)) {
-
-        //     $new_shema = [];
-        //     foreach ($this->shema as $key1 => $value) {
-        //         $shema_array = [];
-        //         foreach ($value as $key2 => $ft) {
-        //             // trace_log($key2, ' ', $ft);
-        //             if ($key2 == 'field_type') {
-        //                 $type_array = [];
-        //                 foreach ($ft as $key3 => $value) {
-        //                     if ($value{0} != '_') {
-        //                         $new_template = Template::create(['title' => $value ]);
-        //                         $shema_array[$key2][$key3] = $new_template->index;
-        //                     } else {
-        //                         $shema_array[$key2][$key3] = $value;
-        //                     }
-        //                 }
-
-        //             } else {
-        //                 $shema_array[$key2] = $ft;
-        //             }
-        //         }
-
-        //         $new_shema[$key1] = $shema_array;
-        //     }
-
-        //     $this->shema = $new_shema;
-        // }
+        if (!$this->parent) {
+            $this->parent_permalink = '';
+        } else {
+            $this->parent_permalink = $this->parent->permalink;
+            $this->permalink = $this->parent_permalink.'/'.$this->slug;
+        }
+        
     }
 
+    public function afterSave() 
+    {
+        // Меняем постоянные ссылки в случае смены слага
+        $childrens = $this->getChildren();
+
+        if ($childrens->first() != null) {
+            if($childrens->first()->parent_permalink <> $this->permalink) {
+                foreach ($childrens as $children) {
+                    $children->save();
+                }
+            }
+        }
+    }
     public function filterFields($fields, $context = null)
     {
-        \Debugbar::info($fields);
-        // $fields->permalink->value = $fields->parent->value.'/'.$fields->slug->value;
+
+        if (isset($fields->parent)) {
+            if ($fields->parent->value == 0) {
+                $fields->permalink->value = '/'.$fields->slug->value;
+            } else {
+                $node = $this::find($fields->parent->value)->permalink;
+                $fields->permalink->value = $node.'/'.$fields->slug->value;
+            }
+        }
     }
 }
