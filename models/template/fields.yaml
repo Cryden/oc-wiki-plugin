@@ -18,7 +18,7 @@ fields:
     icon:
         label: Icon
         type: dropdown
-        options: iconList
+        options: getIconList
         default: oc-icon-file
         span: storm
         cssClass: col-lg-4

@@ -10,3 +10,5 @@ columns:
         label: Title
     template:
         label: Template
+    index:
+        label: Index

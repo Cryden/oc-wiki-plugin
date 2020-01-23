@@ -12,3 +12,5 @@ columns:
         label: Description
     permalink:
         label: Permalink
+    index:
+        label: Index

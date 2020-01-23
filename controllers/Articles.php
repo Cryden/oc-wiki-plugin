@@ -34,7 +34,7 @@ class Articles extends Controller
     
             foreach ($fields_array as $value) {
 
-                switch ($value['field_type'][0]) {
+                switch ($value['field_type']) {
                     case '_str':
                         $field_options = [];
                         break;

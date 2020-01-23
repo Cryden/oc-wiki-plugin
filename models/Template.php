@@ -39,25 +39,26 @@ class Template extends Model
     public $attachOne = [];
     public $attachMany = [];
 
-    public function iconList()
+    public $standart_fields = [
+        '_str'   => "String",
+        '_editor'=> "Editor",
+        '_date'  => "Date",
+        '_img'   => "Image",
+    ];
+
+    public function getIconList()
     {
         return \Crydesign\Wiki\Classes\IconList::getList();
     }
 
     public function getStandartTemplateField()
     {
-        $options = [
-            '_str'   => "String",
-            '_date'  => "Date",
-            '_img'   => "Image",
-        ];
-
-        return $options;
+        return $this->standart_fields;
     }
 
     public function getRelationTemplateField()
     {
-        $template = \Crydesign\Wiki\Models\Template::get()->lists('title', 'index');
+        $template = \Crydesign\Wiki\Models\Template::where('index', '!=', null)->get()->lists('title', 'index');
 
         return $template;
     }
@@ -68,10 +69,10 @@ class Template extends Model
     }
 
     public function beforeSave() {
-        //\Debugbar::info($this);
-
-        if ($this->index{0} != '_') {
-            $this->index = '_'.mb_strtolower($this->title);
+        if ($this->slug{0} == ':') {
+            $this->index = '_'.mb_strtolower(snake_case($this->title.'__'.$this->id));
+        } else {
+            $this->index = null;
         }
 
         if (!$this->parent) {
@@ -80,15 +81,11 @@ class Template extends Model
             $this->parent_permalink = $this->parent->permalink;
             $this->permalink = $this->parent_permalink.'/'.$this->slug;
         }
-        
     }
 
     public function afterSave() 
     {
-        // Меняем постоянные ссылки в случае смены слага
         $childrens = $this->getChildren();
-
-        trace_log($this->getParent());
 
         if ($childrens->first() != null) {
             if($childrens->first()->parent_permalink <> $this->permalink) {
@@ -98,9 +95,9 @@ class Template extends Model
             }
         }
     }
+
     public function filterFields($fields, $context = null)
     {
-
         if (isset($fields->parent)) {
             if ($fields->parent->value == 0) {
                 $fields->permalink->value = '/'.$fields->slug->value;
@@ -109,5 +106,6 @@ class Template extends Model
                 $fields->permalink->value = $node.'/'.$fields->slug->value;
             }
         }
+        // \Debugbar::info($fields);
     }
 }
