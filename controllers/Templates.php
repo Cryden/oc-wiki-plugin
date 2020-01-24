@@ -23,7 +23,13 @@ class Templates extends Controller
     public function __construct()
     {
         parent::__construct();
+        BackendMenu::setContext('Crydesign.Wiki', 'wiki', 'templates');
         $this->addCss('/plugins/crydesign/wiki/assets/sass/styles.scss');
+    }
+
+    public function formBeforeCreate() 
+    {
+        $this->vars['_type'] = last(explode('/', \Request::path()));
     }
 
     // public function index()

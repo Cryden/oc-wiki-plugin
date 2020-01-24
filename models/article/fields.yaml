@@ -3,9 +3,11 @@
 # ===================================
 
 fields:
+
     template@create:
         label: crydesign.wiki::lang.article.template
         type: dropdown
+
     template@update:
         label: crydesign.wiki::lang.article.template
         type: dropdown
@@ -14,4 +16,17 @@ fields:
     permalink@update:
         label: Permalink
         disabled: true
+
+    _slug@update:
+        label: Slug
+        trigger:
+            action: enable
+            field: _editslug
+            condition: checked
+
+    _editslug:
+        label: Edit Slug
+        type: checkbox
+        context: update
+
 

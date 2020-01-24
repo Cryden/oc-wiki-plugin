@@ -3,6 +3,8 @@
 # ===================================
 
 fields:
+    type:
+        label: type
     main_section:
         label: Main info
         type: section

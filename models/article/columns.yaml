@@ -6,7 +6,7 @@ columns:
     id:
         label: ID
         searchable: true
-    title:
+    article[title]:
         label: Title
     template:
         label: Template
