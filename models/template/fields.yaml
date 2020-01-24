@@ -92,10 +92,6 @@ fields:
                 description: Relation text field
                 icon: icon-sitemap
                 fields:
-                    alias:
-                        label: Alias
-                        span: storm 
-                        cssClass: col-lg-3
                     field_title:
                         label: Field Title
                         span: storm
@@ -108,6 +104,10 @@ fields:
                         options: getRelationTemplateField
                         span: storm
                         cssClass: col-lg-6
+                    alias:
+                        label: Alias
+                        span: storm 
+                        cssClass: col-lg-3
             filter:
                 name: Filter
                 description: Filter text field

@@ -54,20 +54,41 @@ class Article extends Model
 
     public function beforeSave() 
     {
-        $template = \Crydesign\Wiki\Models\Template::where('index',$this->template)->first();
-        $fields_array = $template->shema;
+        // Article Status
+        if ($this->status == null) {
+            $this->status = 'created';
+        }
+        
+        // Article Wiki Id
+        //$this->wiki_id = snake_case($this->template.$this->article['title']);
 
-        // foreach ($fields_array as $key => $value) {
-        //     if ($value['field_type'][0] != '_str' && $value['field_type'][0] != '_img' && $value['field_type'][0] != '_date') {
-        //         $field_type = $value['field_type'][0];
-        //         foreach ($this->article[$value['field_title']] as $value) {
-        //             $keys = explode("_", $value);
-        //             // trace_log($keys);
-        //             if (!(\Crydesign\Wiki\Models\Article::where('id', $keys[0])->first())) {
-        //                 Article::create([ 'title' => $value, 'template' => $field_type ]);
-        //             }
-        //         }
-        //     }
-        // }
+        // Article Permalink
+        if ($this->status !== 'created') {
+            // \Debugbar::info('not check');
+        } else {
+            \Debugbar::info('check');
+            $template = Template::where('index', $this->template)->first();
+            $permalink_pattern = $template->permalink;
+            $pattern = explode("/", $permalink_pattern);
+            array_shift($pattern);
+            $permalink = '';
+
+            foreach ($pattern as $value) {
+                if ($value{0} != ':') {
+                    $value = '/'.$value;
+                } else {
+                    foreach ($template->shema as $field) {
+                        if ($value == $field['alias']) {
+                            $field_title = $field['field_title'];
+                        }
+                    }
+                    $value = '/'.\Str::slug($this->article[$field_title]);
+                }
+                $permalink = $permalink.$value;
+            }
+
+            $this->permalink = $permalink;
+            $this->status = "draft";
+        }
     }
 }

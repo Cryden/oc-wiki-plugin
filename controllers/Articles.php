@@ -46,10 +46,10 @@ class Articles extends Controller
                         break;
 
                     default:
-                        $options = \Crydesign\Wiki\Models\Article::where('template', $value['field_type'][0])->select(DB::raw("concat (id, template) as indexed, title"))->lists('title', 'indexed');
+                        $options = \Crydesign\Wiki\Models\Article::where('template', $value['field_type'])->select(DB::raw("concat (id, template) as indexed, json_unquote(JSON_EXTRACT(article, '$.title')) title"))->lists('title', 'indexed');
                         // dd($options);
                         $field_options = [
-                            'type' => 'taglist',
+                            'type' => 'dropdown',
                             'options' => $options,
                             'mode' => 'array',
                         ];

@@ -69,22 +69,30 @@ class Template extends Model
     }
 
     public function beforeSave() {
-        if ($this->slug{0} == ':') {
-            $this->index = '_'.mb_strtolower(snake_case($this->title.'__'.$this->id));
-        } else {
-            $this->index = null;
-        }
-
         if (!$this->parent) {
             $this->parent_permalink = '';
         } else {
             $this->parent_permalink = $this->parent->permalink;
             $this->permalink = $this->parent_permalink.'/'.$this->slug;
         }
+
+        if ($this->slug{0} == ':') {
+            $check = $this::where('index', '_'.snake_case($this->title ))->first();
+            if (!isset($check) or $this->index == '_'.snake_case($this->title)) {
+                $this->index = '_'.snake_case($this->title);
+            } else {
+                $this->index = '_'.snake_case($this->title.rand());
+            }
+            
+            // $this->save();
+        } else {
+            $this->index = null;
+        }
     }
 
     public function afterSave() 
     {
+        // Change all Templates Permalink Pattern after Template Permalink change
         $childrens = $this->getChildren();
 
         if ($childrens->first() != null) {
@@ -94,6 +102,12 @@ class Template extends Model
                 }
             }
         }
+
+        // Change all Articles Permalink Pattern after Template Permalink change
+        // $articles = Article::where('template', $this->index)->get();
+        // foreach ($articles as $article) {
+        //     $article->save();
+        // }
     }
 
     public function filterFields($fields, $context = null)
@@ -106,6 +120,5 @@ class Template extends Model
                 $fields->permalink->value = $node.'/'.$fields->slug->value;
             }
         }
-        // \Debugbar::info($fields);
     }
 }

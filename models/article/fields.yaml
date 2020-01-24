@@ -3,13 +3,15 @@
 # ===================================
 
 fields:
-    title:
-        label: crydesign.wiki::lang.article.title 
     template@create:
         label: crydesign.wiki::lang.article.template
         type: dropdown
     template@update:
         label: crydesign.wiki::lang.article.template
         type: dropdown
+        disabled: true
+
+    permalink@update:
+        label: Permalink
         disabled: true
 
