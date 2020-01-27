@@ -3,8 +3,6 @@
 # ===================================
 
 fields:
-    type:
-        label: type
     main_section:
         label: Main info
         type: section
@@ -55,71 +53,3 @@ fields:
         dependsOn:
             - parent
             - slug
-
-    shema_section:
-        label: Article Template
-        type: section
-        comment: This section contains info about the Article Shema.
-        span: storm
-        cssClass: col-lg-12
-
-    shema:
-        type: repeater
-        prompt: Add fields
-        span: storm
-        cssClass: col-lg-12
-        groups:
-            standart:
-                name: Standart
-                description: Basic fields
-                icon: icon-list
-                fields:
-                    field_title:
-                        label: Field Title
-                        span: storm
-                        cssClass: col-lg-6
-                        required: true
-                    field_type:
-                        label: Field Type
-                        type: dropdown
-                        options: getStandartTemplateField
-                        span: storm
-                        cssClass: col-lg-3
-                    alias:
-                        label: Alias
-                        span: storm 
-                        cssClass: col-lg-3
-            relation:
-                name: Relation
-                description: Relation text field
-                icon: icon-sitemap
-                fields:
-                    field_title:
-                        label: Field Title
-                        span: storm
-                        cssClass: col-lg-3
-                        required: true
-                    field_type:
-                        label: Field Type
-                        type: dropdown
-                        useKey: true
-                        options: getRelationTemplateField
-                        span: storm
-                        cssClass: col-lg-6
-                    alias:
-                        label: Alias
-                        span: storm 
-                        cssClass: col-lg-3
-            filter:
-                name: Filter
-                description: Filter text field
-                icon: icon-filter
-                fields:
-                    field_title:
-                        label: Field Title
-                        span: storm
-                        cssClass: col-lg-6
-                        required: true
-                    field_type:
-                        label: Field Type
-

@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Template
+
+# Model Form Field configuration
+form: $/crydesign/wiki/models/template/template_fields.yaml
+
+# Model Class name
+modelClass: Crydesign\Wiki\Models\Template
+
+# Default redirect location
+defaultRedirect: crydesign/wiki/templates
+
+# Create page
+create:
+    title: Create Template
+    redirect: crydesign/wiki/templates/update/template/:id
+    redirectClose: crydesign/wiki/templates
+
+# Update page
+update:
+    title: Edit Template
+    redirect: crydesign/wiki/templates
+    redirectClose: crydesign/wiki/templates
+
+# Preview page
+preview:
+    title: Preview Template

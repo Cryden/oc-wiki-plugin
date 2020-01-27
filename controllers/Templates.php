@@ -14,7 +14,7 @@ class Templates extends Controller
         'Backend.Behaviors.ListController',
     ];
 
-    public $formConfig = 'config_form.yaml';
+    public $formConfig = 'config_form_template.yaml';
     public $listConfig = 'config_list.yaml';
 
     //public $bodyClass = 'compact-container';
@@ -22,14 +22,31 @@ class Templates extends Controller
 
     public function __construct()
     {
+        $this->vars['type'] = last(explode('/', \Request::path()));
+        
+        switch ($this->vars['type']) {
+            case 'group':
+                $this->formConfig = 'config_form_group.yaml';
+                break;
+            case 'template':
+                $this->formConfig = 'config_form_template.yaml';
+                break;
+            case 'extension':
+                $this->formConfig = 'config_form_extension.yaml';
+            default:
+                break;
+        }
+
         parent::__construct();
         BackendMenu::setContext('Crydesign.Wiki', 'wiki', 'templates');
         $this->addCss('/plugins/crydesign/wiki/assets/sass/styles.scss');
     }
 
-    public function formBeforeCreate() 
+    public function create() 
     {
-        $this->vars['_type'] = last(explode('/', \Request::path()));
+        parent::create();
+        
+
     }
 
     // public function index()

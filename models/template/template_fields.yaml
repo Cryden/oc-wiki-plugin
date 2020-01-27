@@ -1,0 +1,125 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    type:
+        label: type
+    main_section:
+        label: Main info
+        type: section
+        comment: This section contains main info about the template.
+        span: storm
+        cssClass: col-lg-12
+
+    title:
+        label: Template Title
+        span: storm
+        cssClass: col-lg-8
+        required: true
+    icon:
+        label: Icon
+        type: dropdown
+        options: getIconList
+        default: oc-icon-file
+        span: storm
+        cssClass: col-lg-4
+    description:
+        label: Description
+        span: storm
+        cssClass: col-lg-12
+        type: textarea
+
+    permalink_section:
+        label: Permalink Pattern
+        type: section
+        comment: Create Permalink Pattern.
+        span: storm
+        cssClass: col-lg-12
+    parent:
+        label: Parent Category
+        tab: Информация
+        type: relation
+        nameFrom: title
+        emptyOption: Без категории
+        span: storm
+        cssClass: col-lg-3
+    slug:
+        label: Slug
+        span: storm
+        cssClass: col-lg-3
+    permalink:
+        label: Permalink Pattern
+        span: storm
+        cssClass: col-lg-6
+        dependsOn:
+            - parent
+            - slug
+
+    shema_section:
+        label: Article Template
+        type: section
+        comment: This section contains info about the Article Shema.
+        span: storm
+        cssClass: col-lg-12
+
+    shema:
+        type: repeater
+        prompt: Add fields
+        span: storm
+        cssClass: col-lg-12
+        groups:
+            standart:
+                name: Standart
+                description: Basic fields
+                icon: icon-list
+                fields:
+                    field_title:
+                        label: Field Title
+                        span: storm
+                        cssClass: col-lg-6
+                        required: true
+                    field_type:
+                        label: Field Type
+                        type: dropdown
+                        options: getStandartTemplateField
+                        span: storm
+                        cssClass: col-lg-3
+                    alias:
+                        label: Alias
+                        span: storm 
+                        cssClass: col-lg-3
+            relation:
+                name: Relation
+                description: Relation text field
+                icon: icon-sitemap
+                fields:
+                    field_title:
+                        label: Field Title
+                        span: storm
+                        cssClass: col-lg-3
+                        required: true
+                    field_type:
+                        label: Field Type
+                        type: dropdown
+                        useKey: true
+                        options: getRelationTemplateField
+                        span: storm
+                        cssClass: col-lg-6
+                    alias:
+                        label: Alias
+                        span: storm 
+                        cssClass: col-lg-3
+            filter:
+                name: Filter
+                description: Filter text field
+                icon: icon-filter
+                fields:
+                    field_title:
+                        label: Field Title
+                        span: storm
+                        cssClass: col-lg-6
+                        required: true
+                    field_type:
+                        label: Field Type
+
