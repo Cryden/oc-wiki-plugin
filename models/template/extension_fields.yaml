@@ -1,0 +1,55 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    main_section:
+        label: Main info
+        type: section
+        comment: This section contains main info about the template.
+        span: storm
+        cssClass: col-lg-12
+
+    title:
+        label: Template Title
+        span: storm
+        cssClass: col-lg-8
+        required: true
+    icon:
+        label: Icon
+        type: dropdown
+        options: getIconList
+        default: oc-icon-file
+        span: storm
+        cssClass: col-lg-4
+    description:
+        label: Description
+        span: storm
+        cssClass: col-lg-12
+        type: textarea
+
+    permalink_section:
+        label: Permalink Pattern
+        type: section
+        comment: Create Permalink Pattern.
+        span: storm
+        cssClass: col-lg-12
+    parent:
+        label: Parent Category
+        tab: Информация
+        type: relation
+        nameFrom: title
+        emptyOption: Без категории
+        span: storm
+        cssClass: col-lg-3
+    slug:
+        label: Slug
+        span: storm
+        cssClass: col-lg-3
+    permalink:
+        label: Permalink Pattern
+        span: storm
+        cssClass: col-lg-6
+        dependsOn:
+            - parent
+            - slug

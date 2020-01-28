@@ -12,6 +12,7 @@ class CreateTemplatesTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('index')->nullable();
+            $table->string('type')->nullable();
             $table->string('title');
             $table->string('description')->nullable();
             $table->string('icon')->nullable();

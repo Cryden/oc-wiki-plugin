@@ -3,10 +3,10 @@
 # ===================================
 
 # Record name
-name: Group Template
+name: Template
 
 # Model Form Field configuration
-form: $/crydesign/wiki/models/template/group_fields.yaml
+form: $/crydesign/wiki/models/template/template_fields.yaml
 
 # Model Class name
 modelClass: Crydesign\Wiki\Models\Template

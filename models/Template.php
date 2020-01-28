@@ -76,18 +76,20 @@ class Template extends Model
             $this->permalink = $this->parent_permalink.'/'.$this->slug;
         }
 
-        if ($this->slug{0} == ':') {
-            $check = $this::where('index', '_'.snake_case($this->title ))->first();
-            if (!isset($check) or $this->index == '_'.snake_case($this->title)) {
-                $this->index = '_'.snake_case($this->title);
-            } else {
-                $this->index = '_'.snake_case($this->title.rand());
-            }
+        trace_log($this->type);
+
+        // if ($this->slug{0} == ':') {
+        //     $check = $this::where('index', '_'.snake_case($this->title ))->first();
+        //     if (!isset($check) or $this->index == '_'.snake_case($this->title)) {
+        //         $this->index = '_'.snake_case($this->title);
+        //     } else {
+        //         $this->index = '_'.snake_case($this->title.rand());
+        //     }
             
-            // $this->save();
-        } else {
-            $this->index = null;
-        }
+        //     // $this->save();
+        // } else {
+        //     $this->index = null;
+        // }
     }
 
     public function afterSave() 

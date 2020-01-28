@@ -2,7 +2,7 @@
 
 use BackendMenu;
 use Backend\Classes\Controller;
-use Flash;
+use Yaml;
 
 /**
  * Templates Back-end Controller
@@ -14,7 +14,7 @@ class Templates extends Controller
         'Backend.Behaviors.ListController',
     ];
 
-    public $formConfig = 'config_form_template.yaml';
+    public $formConfig = 'config_form.yaml';
     public $listConfig = 'config_list.yaml';
 
     //public $bodyClass = 'compact-container';
@@ -22,41 +22,44 @@ class Templates extends Controller
 
     public function __construct()
     {
-        $this->vars['type'] = last(explode('/', \Request::path()));
-        
+
+        $this->formConfig = (array) $this->makeConfig($this->formConfig);
+
+        parent::__construct();
+
+        BackendMenu::setContext('Crydesign.Wiki', 'wiki', 'templates');
+
+        $this->addCss('/plugins/crydesign/wiki/assets/sass/styles.scss');
+
+        $model = $this->formGetModel();
+
+        if(!isset($model->type)) {
+            $this->vars['type'] = last(explode('/', \Request::path()));
+        } else {
+            $this->vars['type'] = $model->type;
+        }
+
         switch ($this->vars['type']) {
             case 'group':
-                $this->formConfig = 'config_form_group.yaml';
+                $this->formConfig['name'] = 'Group';
+                $this->formConfig['form'] = '$/crydesign/wiki/models/template/group_fields.yaml';
                 break;
             case 'template':
-                $this->formConfig = 'config_form_template.yaml';
+                $this->formConfig['name'] = 'Template';
+                $this->formConfig['form'] = '$/crydesign/wiki/models/template/template_fields.yaml';
                 break;
             case 'extension':
-                $this->formConfig = 'config_form_extension.yaml';
+                $this->formConfig['name'] = 'Extension';
+                $this->formConfig['form'] = '$/crydesign/wiki/models/template/extension_fields.yaml';
             default:
                 break;
         }
 
-        parent::__construct();
-        BackendMenu::setContext('Crydesign.Wiki', 'wiki', 'templates');
-        $this->addCss('/plugins/crydesign/wiki/assets/sass/styles.scss');
+        dump($this);
     }
 
-    public function create() 
+    public function formBeforeCreate($model)
     {
-        parent::create();
-        
-
+        $model->type = $this->vars['type'];
     }
-
-    // public function index()
-    // {
-    //     $this->pageTitle = 'Панель управления';
-    //     $this->bodyClass = 'compact-container';
-    // }
-
-    // public function onDelete() {
-    //     \Crydesign\Wiki\Models\Template::destroy($_POST['id']);
-    //     // Flash::info($_POST['id']);
-    // }
 }
