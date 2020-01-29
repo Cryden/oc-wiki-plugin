@@ -76,8 +76,6 @@ class Template extends Model
             $this->permalink = $this->parent_permalink.'/'.$this->slug;
         }
 
-        trace_log($this->type);
-
         // if ($this->slug{0} == ':') {
         //     $check = $this::where('index', '_'.snake_case($this->title ))->first();
         //     if (!isset($check) or $this->index == '_'.snake_case($this->title)) {
@@ -114,6 +112,10 @@ class Template extends Model
 
     public function filterFields($fields, $context = null)
     {
+        if (!isset($fields->type->value)) {
+            $fields->type->value = last(explode('/', \Request::path()));
+        }
+
         if (isset($fields->parent)) {
             if ($fields->parent->value == 0) {
                 $fields->permalink->value = '/'.$fields->slug->value;

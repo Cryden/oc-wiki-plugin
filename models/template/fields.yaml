@@ -1,0 +1,162 @@
+tabs:
+    stretch: true
+    defaultTab: Main
+
+
+    fields:
+        type:
+            label: type
+            cssClass: hidden
+
+        main_section:
+            tab: Main
+            label: Main info
+            type: section
+            comment: This section contains main info about the template.
+            span: storm
+            cssClass: col-lg-12
+
+        title:
+            tab: Main
+            label: Template Title
+            span: storm
+            cssClass: col-lg-8
+            required: true
+        icon:
+            tab: Main
+            label: Icon
+            type: dropdown
+            options: getIconList
+            default: oc-icon-file
+            span: storm
+            cssClass: col-lg-4
+        description:
+            tab: Main
+            label: Description
+            span: storm
+            cssClass: col-lg-12
+            type: textarea
+            size: large
+
+        permalink_section:
+            tab: Permalink
+            label: Permalink Pattern
+            type: section
+            comment: Create Permalink Pattern.
+            span: storm
+            cssClass: col-lg-12
+            trigger:
+                action: show
+                field: type
+                condition: value[group], value[template]
+        parent:
+            tab: Permalink
+            label: Parent Category
+            type: relation
+            nameFrom: title
+            emptyOption: ---
+            span: storm
+            cssClass: col-lg-3
+            trigger:
+                action: show
+                field: type
+                condition: value[group], value[template]
+        slug:
+            tab: Permalink
+            label: Slug
+            span: storm
+            cssClass: col-lg-3
+            trigger:
+                action: show
+                field: type
+                condition: value[group], value[template]
+        permalink:
+            tab: Permalink
+            label: Permalink Pattern
+            span: storm
+            cssClass: col-lg-6
+            trigger:
+                action: show
+                field: type
+                condition: value[group], value[template]
+            dependsOn:
+                - parent
+                - slug
+
+        shema_section:
+            tab: Shema
+            label: Article Template
+            type: section
+            comment: This section contains info about the Article Shema.
+            span: storm
+            cssClass: col-lg-12
+            trigger:
+                action: show
+                field: type
+                condition: value[template]
+
+        shema:
+            tab: Shema
+            type: repeater
+            prompt: Add fields
+            span: storm
+            cssClass: col-lg-12
+            trigger:
+                action: show
+                field: type
+                condition: value[template]
+            groups:
+                standart:
+                    name: Standart
+                    description: Basic fields
+                    icon: icon-list
+                    fields:
+                        field_title:
+                            label: Field Title
+                            span: storm
+                            cssClass: col-lg-6
+                            required: true
+                        field_type:
+                            label: Field Type
+                            type: dropdown
+                            options: getStandartTemplateField
+                            span: storm
+                            cssClass: col-lg-3
+                        alias:
+                            label: Alias
+                            span: storm 
+                            cssClass: col-lg-3
+                relation:
+                    name: Relation
+                    description: Relation text field
+                    icon: icon-sitemap
+                    fields:
+                        field_title:
+                            label: Field Title
+                            span: storm
+                            cssClass: col-lg-3
+                            required: true
+                        field_type:
+                            label: Field Type
+                            type: dropdown
+                            useKey: true
+                            options: getRelationTemplateField
+                            span: storm
+                            cssClass: col-lg-6
+                        alias:
+                            label: Alias
+                            span: storm 
+                            cssClass: col-lg-3
+                filter:
+                    name: Filter
+                    description: Filter text field
+                    icon: icon-filter
+                    fields:
+                        field_title:
+                            label: Field Title
+                            span: storm
+                            cssClass: col-lg-6
+                            required: true
+                        field_type:
+                            label: Field Type
+
