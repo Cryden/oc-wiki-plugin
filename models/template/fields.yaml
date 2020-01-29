@@ -4,6 +4,7 @@ tabs:
 
 
     fields:
+
         type:
             label: type
             cssClass: hidden
@@ -22,6 +23,7 @@ tabs:
             span: storm
             cssClass: col-lg-8
             required: true
+
         icon:
             tab: Main
             label: Icon
@@ -30,6 +32,7 @@ tabs:
             default: oc-icon-file
             span: storm
             cssClass: col-lg-4
+
         description:
             tab: Main
             label: Description
@@ -49,18 +52,15 @@ tabs:
                 action: show
                 field: type
                 condition: value[group], value[template]
+
         parent:
-            tab: Permalink
             label: Parent Category
             type: relation
             nameFrom: title
             emptyOption: ---
             span: storm
             cssClass: col-lg-3
-            trigger:
-                action: show
-                field: type
-                condition: value[group], value[template]
+
         slug:
             tab: Permalink
             label: Slug
@@ -70,6 +70,7 @@ tabs:
                 action: show
                 field: type
                 condition: value[group], value[template]
+
         permalink:
             tab: Permalink
             label: Permalink Pattern
@@ -111,31 +112,37 @@ tabs:
                     description: Basic fields
                     icon: icon-list
                     fields:
+
                         field_title:
                             label: Field Title
                             span: storm
                             cssClass: col-lg-6
                             required: true
+
                         field_type:
                             label: Field Type
                             type: dropdown
                             options: getStandartTemplateField
                             span: storm
                             cssClass: col-lg-3
+
                         alias:
                             label: Alias
                             span: storm 
                             cssClass: col-lg-3
+
                 relation:
                     name: Relation
                     description: Relation text field
                     icon: icon-sitemap
                     fields:
+
                         field_title:
                             label: Field Title
                             span: storm
                             cssClass: col-lg-3
                             required: true
+
                         field_type:
                             label: Field Type
                             type: dropdown
@@ -143,20 +150,24 @@ tabs:
                             options: getRelationTemplateField
                             span: storm
                             cssClass: col-lg-6
+
                         alias:
                             label: Alias
                             span: storm 
                             cssClass: col-lg-3
+
                 filter:
                     name: Filter
                     description: Filter text field
                     icon: icon-filter
                     fields:
+
                         field_title:
                             label: Field Title
                             span: storm
                             cssClass: col-lg-6
                             required: true
+
                         field_type:
                             label: Field Type
 

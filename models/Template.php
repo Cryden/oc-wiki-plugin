@@ -114,6 +114,11 @@ class Template extends Model
     {
         if (!isset($fields->type->value)) {
             $fields->type->value = last(explode('/', \Request::path()));
+        } 
+
+        if ($fields->type->value == "extension") {
+            $fields->parent->tab = "Template";
+            $fields->parent->label = "Template";
         }
 
         if (isset($fields->parent)) {
@@ -124,5 +129,7 @@ class Template extends Model
                 $fields->permalink->value = $node.'/'.$fields->slug->value;
             }
         }
+
+        \Debugbar::log($fields);
     }
 }
