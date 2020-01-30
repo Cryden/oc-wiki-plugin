@@ -1,0 +1,30 @@
+parent:
+    tab: Main
+    label: Parent Category
+    type: relation
+    nameFrom: title
+    emptyOption: ---
+    span: storm
+    cssClass: col-lg-3
+
+slug:
+    tab: Main
+    label: Slug
+    span: storm
+    cssClass: col-lg-3
+
+permalink:
+    tab: Main
+    label: Permalink Pattern
+    span: storm
+    cssClass: col-lg-6
+    dependsOn:
+        - parent
+        - slug
+shema:
+    tab: Shema
+    type: repeater
+    prompt: Add fields
+    span: storm
+    cssClass: col-lg-12
+    groups: $/crydesign/wiki/models/template/shema_fields.yaml

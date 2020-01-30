@@ -1,0 +1,16 @@
+parent:
+    tab: Main
+    label: Parent Template
+    type: relation
+    nameFrom: title
+    emptyOption: ---
+    span: storm
+    cssClass: col-lg-12
+
+shema:
+    tab: Shema
+    type: repeater
+    prompt: Add fields
+    span: storm
+    cssClass: col-lg-12
+    groups: $/crydesign/wiki/models/template/shema_fields.yaml

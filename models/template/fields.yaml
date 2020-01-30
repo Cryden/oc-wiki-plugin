@@ -1,13 +1,21 @@
 tabs:
     stretch: true
     defaultTab: Main
+    icons:
+        Main: icon-user
+        Permalink: icon-group
+        Extension: icon-group
+        Shema: icon-group
 
 
     fields:
 
+        # Base fields
         type:
             label: type
             cssClass: hidden
+
+        # Sections
 
         main_section:
             tab: Main
@@ -16,6 +24,20 @@ tabs:
             comment: This section contains main info about the template.
             span: storm
             cssClass: col-lg-12
+
+        shema_section:
+            tab: Shema
+            label: Article Template
+            type: section
+            comment: This section contains info about the Article Shema.
+            span: storm
+            cssClass: col-lg-12
+            trigger:
+                action: show
+                field: type
+                condition: value[template], value[extension]
+
+        # Basic fields
 
         title:
             tab: Main
@@ -39,27 +61,22 @@ tabs:
             span: storm
             cssClass: col-lg-12
             type: textarea
-            size: large
+            size: small
 
-        permalink_section:
-            tab: Permalink
-            label: Permalink Pattern
-            type: section
-            comment: Create Permalink Pattern.
-            span: storm
-            cssClass: col-lg-12
-            trigger:
-                action: show
-                field: type
-                condition: value[group], value[template]
+
 
         parent:
+            tab: Permalink
             label: Parent Category
             type: relation
             nameFrom: title
             emptyOption: ---
             span: storm
             cssClass: col-lg-3
+            trigger:
+                action: show
+                field: type
+                condition: value[group], value[template]
 
         slug:
             tab: Permalink
@@ -84,17 +101,7 @@ tabs:
                 - parent
                 - slug
 
-        shema_section:
-            tab: Shema
-            label: Article Template
-            type: section
-            comment: This section contains info about the Article Shema.
-            span: storm
-            cssClass: col-lg-12
-            trigger:
-                action: show
-                field: type
-                condition: value[template]
+
 
         shema:
             tab: Shema
@@ -106,68 +113,4 @@ tabs:
                 action: show
                 field: type
                 condition: value[template]
-            groups:
-                standart:
-                    name: Standart
-                    description: Basic fields
-                    icon: icon-list
-                    fields:
-
-                        field_title:
-                            label: Field Title
-                            span: storm
-                            cssClass: col-lg-6
-                            required: true
-
-                        field_type:
-                            label: Field Type
-                            type: dropdown
-                            options: getStandartTemplateField
-                            span: storm
-                            cssClass: col-lg-3
-
-                        alias:
-                            label: Alias
-                            span: storm 
-                            cssClass: col-lg-3
-
-                relation:
-                    name: Relation
-                    description: Relation text field
-                    icon: icon-sitemap
-                    fields:
-
-                        field_title:
-                            label: Field Title
-                            span: storm
-                            cssClass: col-lg-3
-                            required: true
-
-                        field_type:
-                            label: Field Type
-                            type: dropdown
-                            useKey: true
-                            options: getRelationTemplateField
-                            span: storm
-                            cssClass: col-lg-6
-
-                        alias:
-                            label: Alias
-                            span: storm 
-                            cssClass: col-lg-3
-
-                filter:
-                    name: Filter
-                    description: Filter text field
-                    icon: icon-filter
-                    fields:
-
-                        field_title:
-                            label: Field Title
-                            span: storm
-                            cssClass: col-lg-6
-                            required: true
-
-                        field_type:
-                            label: Field Type
-
+            groups: $/crydesign/wiki/models/template/shema_fields.yaml

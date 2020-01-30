@@ -28,4 +28,33 @@ class Templates extends Controller
 
         $this->addCss('/plugins/crydesign/wiki/assets/sass/styles.scss');
     }
+
+    public function formExtendFields($form)
+    {
+        if (!isset($form->model->type)) {
+            $type = last(explode('/', \Request::path()));
+        } else {
+            $type = $form->model->type;
+        }
+
+        switch ($type) {
+            case 'template':
+                $fields = Yaml::parseFile(plugins_path().'/crydesign/wiki/models/template/template_fields.yaml');
+                break;
+            case 'group':
+                $fields = Yaml::parseFile(plugins_path().'/crydesign/wiki/models/template/group_fields.yaml');
+                break;
+            case 'extension':
+                $fields = Yaml::parseFile(plugins_path().'/crydesign/wiki/models/template/extension_fields.yaml');
+                break;
+
+            default:
+                $fields = [];
+                break;
+        }
+
+        $form->addTabFields($fields);
+
+        // \Debugbar::log($type);
+    }
 }

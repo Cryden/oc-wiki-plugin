@@ -130,6 +130,6 @@ class Template extends Model
             }
         }
 
-        \Debugbar::log($fields);
+        // \Debugbar::log($fields);
     }
 }
