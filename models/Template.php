@@ -46,6 +46,48 @@ class Template extends Model
         '_img'   => "Image",
     ];
 
+    public function beforeSave() 
+    {
+        // Set Permalink
+        if ($this->type != 'extension') {
+            if (!$this->parent) {
+                $this->parent_permalink = '';
+            } else {
+                $this->parent_permalink = $this->parent->permalink;
+                $this->permalink = $this->parent_permalink.'/'.$this->slug;
+            }
+        } else {
+            $this->permalink = null;
+        }
+
+        // Set Index
+        $this->index = str_limit('tmp_'.snake_case($this->type).'_'.snake_case($this->title).'_'.str_random(10), 30);
+    }
+
+    public function afterSave() 
+    {
+        // Change all Templates Permalink Pattern after Template Permalink change
+        $childrens = $this->getChildren();
+
+        if ($childrens->first() != null) {
+            if($childrens->first()->parent_permalink <> $this->permalink) {
+                foreach ($childrens as $children) {
+                    $children->save();
+                }
+            }
+        }
+    }
+
+    public function scopeExtension($query)
+    {
+        return $query->where('type', 'template');
+    }
+
+    public function scopeTemplate($query)
+    {
+        return $query->where('type', '!=', 'extension');
+    }
+
     public function getIconList()
     {
         return \Crydesign\Wiki\Classes\IconList::getList();
@@ -68,60 +110,15 @@ class Template extends Model
         return;
     }
 
-    public function beforeSave() {
-        if (!$this->parent) {
-            $this->parent_permalink = '';
-        } else {
-            $this->parent_permalink = $this->parent->permalink;
-            $this->permalink = $this->parent_permalink.'/'.$this->slug;
-        }
-
-        // if ($this->slug{0} == ':') {
-        //     $check = $this::where('index', '_'.snake_case($this->title ))->first();
-        //     if (!isset($check) or $this->index == '_'.snake_case($this->title)) {
-        //         $this->index = '_'.snake_case($this->title);
-        //     } else {
-        //         $this->index = '_'.snake_case($this->title.rand());
-        //     }
-            
-        //     // $this->save();
-        // } else {
-        //     $this->index = null;
-        // }
-    }
-
-    public function afterSave() 
-    {
-        // Change all Templates Permalink Pattern after Template Permalink change
-        $childrens = $this->getChildren();
-
-        if ($childrens->first() != null) {
-            if($childrens->first()->parent_permalink <> $this->permalink) {
-                foreach ($childrens as $children) {
-                    $children->save();
-                }
-            }
-        }
-
-        // Change all Articles Permalink Pattern after Template Permalink change
-        // $articles = Article::where('template', $this->index)->get();
-        // foreach ($articles as $article) {
-        //     $article->save();
-        // }
-    }
-
     public function filterFields($fields, $context = null)
     {
+        // Set Template Type
         if (!isset($fields->type->value)) {
             $fields->type->value = last(explode('/', \Request::path()));
         } 
 
-        if ($fields->type->value == "extension") {
-            $fields->parent->tab = "Template";
-            $fields->parent->label = "Template";
-        }
-
-        if (isset($fields->parent)) {
+        // Set Permalink
+        if (isset($fields->parent) and $fields->type->value != 'extension') {
             if ($fields->parent->value == 0) {
                 $fields->permalink->value = '/'.$fields->slug->value;
             } else {
@@ -129,7 +126,5 @@ class Template extends Model
                 $fields->permalink->value = $node.'/'.$fields->slug->value;
             }
         }
-
-        // \Debugbar::log($fields);
     }
 }

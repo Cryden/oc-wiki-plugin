@@ -4,6 +4,7 @@ parent:
     type: relation
     nameFrom: title
     emptyOption: ---
+    scope: template
     span: storm
     cssClass: col-lg-3
 

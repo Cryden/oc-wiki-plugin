@@ -4,6 +4,7 @@ parent:
     type: relation
     nameFrom: title
     emptyOption: ---
+    scope: extension
     span: storm
     cssClass: col-lg-12
 

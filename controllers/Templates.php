@@ -24,9 +24,15 @@ class Templates extends Controller
     {
         parent::__construct();
 
-        BackendMenu::setContext('Crydesign.Wiki', 'wiki', 'templates');
+        // BackendMenu::setContext('Crydesign.Wiki', 'wiki', 'templates');
 
         $this->addCss('/plugins/crydesign/wiki/assets/sass/styles.scss');
+    }
+
+    public function index()
+    {
+        $this->pageTitle = 'Панель управления';
+        $this->bodyClass = 'compact-container';
     }
 
     public function formExtendFields($form)
