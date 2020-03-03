@@ -35,19 +35,19 @@
 <script>
     $(function () {
         $('.tree li:has(ul)').addClass('parent_li').find(' > .template').attr('title', 'Collapse this branch')
-            .append('<div class="but minus"><i class="icon-minus-square"></i></div>');
-        $('.template > .but').on('click', function (e) {
+            .append('<div class="but minus"></div><div class="box"><i class="icon-minus"></i></div>');
+        $('.template > .box').on('click', function (e) {
             var children = $(this).parent('.template').parent('li.parent_li').find(' > ul > li');
             if (children.is(":visible")) {
                 children.hide('fast');
                 $(this).addClass('plus').removeClass('minus')
-                $(this).attr('title', 'Expand this branch').find(' > i').addClass('icon-plus-square')
-                    .removeClass('icon-minus-square');
+                $(this).attr('title', 'Expand this branch').find(' > i').addClass('icon-plus')
+                    .removeClass('icon-minus');
             } else {
                 children.show('fast');
                 $(this).addClass('minus').removeClass('plus')
                 $(this).attr('title', 'Collapse this branch').find(' > i').addClass(
-                    'icon-minus-square').removeClass('icon-plus-square');
+                    'icon-minus').removeClass('icon-plus');
             }
             e.stopPropagation();
         });
