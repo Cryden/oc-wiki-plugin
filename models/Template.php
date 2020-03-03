@@ -93,6 +93,15 @@ class Template extends Model
         return \Crydesign\Wiki\Classes\IconList::getList();
     }
 
+    public function getTypeList()
+    {
+        return [
+            'template' => 'Template',
+            'group'    => 'Group',
+            'extension'=> 'Extension',
+        ];
+    }
+
     public function getStandartTemplateField()
     {
         return $this->standart_fields;
@@ -112,11 +121,6 @@ class Template extends Model
 
     public function filterFields($fields, $context = null)
     {
-        // Set Template Type
-        if (!isset($fields->type->value)) {
-            $fields->type->value = last(explode('/', \Request::path()));
-        } 
-
         // Set Permalink
         if (isset($fields->parent) and $fields->type->value != 'extension') {
             if ($fields->parent->value == 0) {

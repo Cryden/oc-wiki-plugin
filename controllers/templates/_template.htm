@@ -1,6 +1,0 @@
-<?php 
-    $this->templates = \Crydesign\Wiki\Models\Template::all();
-    foreach ($this->templates as $template) {
-        echo $this->makePartial('tmp', $template->attributes);
-    }
-?>

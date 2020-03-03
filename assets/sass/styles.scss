@@ -1,11 +1,11 @@
-.content {
+.wiki {
     background: #34495E;
     width: 100%;
-    min-height: calc(100% - 40px);
+    min-height: 100%;
     padding: 20px 48px;
 }   
 
-.content__logo {
+.wiki__logo {
     display: flex;
     height: 60px;
     align-items: center;
@@ -14,17 +14,18 @@
     font-size: 14px;
 }
 
-.content__logo p {
+.wiki__logo p {
     line-height: 30px;
     margin: 0;
     border-bottom: 1px solid #CF4242;
 }
 
-.content__templates {
+.wiki__content {
     padding-top: 60px;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .content__templates a, .content__templates a:hover {
@@ -114,4 +115,94 @@
 
 .template__menu a {
     color: #fff;
+}
+
+
+.tree li, .tree ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    display: flex;
+}
+
+.tree ul {
+    flex-direction: column;
+}
+
+.tree li::before, .tree li::after {
+    content: '';
+    left: -25px;
+    position: absolute;
+    right: auto
+}
+
+.tree li::before {
+    width: 12px;
+    left: -12px;
+    border-top: 1px solid #fff;
+    top: 13px;
+}
+
+.tree li::after {
+    width: 25px;
+    height: 100%;
+    top: 13px;
+    left: -12px;
+    border-left: 1px solid #fff;
+    
+}
+
+.tree li .template {
+    border: 1px solid #fff;
+    padding: 10px;
+    text-decoration: none;
+    width: 120px;
+    height: 120px;
+    margin-right: 25px;
+    margin-bottom: 25px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.tree li .parent_li > span {
+    cursor: pointer;
+}
+
+.tree > ul > li::before, .tree > ul > li::after {
+    border: 0;
+}
+
+.tree li:only-child::before {
+    width: 25px;
+    left: -25px;
+}
+
+.tree li:last-child::after {
+    height: 0;
+    left: 0;
+}
+
+.tree li .parent_li  >span:hover, .tree li .parent_li > span:hover + ul li span {
+    background: #eee;
+    border: 1px solid #94a0b4;
+    color: #000
+}
+
+.tree .but {
+    position: absolute;
+    right: -5px;
+    top: 3px;
+}
+
+.minus::before, .minus::after {
+    content: '';
+    position: absolute;
+}
+
+.minus::after {
+    width: 9px;
+    border-top: 1px solid #fff;
+    top: 9px;
 }

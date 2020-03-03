@@ -1,5 +1,5 @@
 parent:
-    tab: Main
+    tab: Permalink
     label: Parent Category
     type: relation
     nameFrom: title
@@ -9,13 +9,13 @@ parent:
     cssClass: col-lg-3
 
 slug:
-    tab: Main
+    tab: Permalink
     label: Slug
     span: storm
     cssClass: col-lg-3
 
 permalink:
-    tab: Main
+    tab: Permalink
     label: Permalink Pattern
     span: storm
     cssClass: col-lg-6

@@ -10,11 +10,6 @@ tabs:
 
     fields:
 
-        # Base fields
-        type:
-            label: type
-            cssClass: hidden
-
         # Sections
 
         main_section:
@@ -24,6 +19,18 @@ tabs:
             comment: This section contains main info about the template.
             span: storm
             cssClass: col-lg-12
+
+        permalink_section:
+            tab: Permalink
+            label: Main info
+            type: section
+            comment: This section contains the template Permalink.
+            span: storm
+            cssClass: col-lg-12
+            trigger:
+                action: show
+                field: type
+                condition: value[template], value[extension]
 
         shema_section:
             tab: Shema
@@ -54,6 +61,14 @@ tabs:
             default: oc-icon-file
             span: storm
             cssClass: col-lg-4
+
+        type:
+            tab: Main
+            label: Type
+            type: dropdown
+            options: getTypeList
+            span: storm
+            cssClass: col-lg-12
 
         description:
             tab: Main
