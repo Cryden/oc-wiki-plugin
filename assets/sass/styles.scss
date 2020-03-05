@@ -28,10 +28,6 @@
     flex-direction: column;
 }
 
-.content__templates a, .content__templates a:hover {
-    text-decoration: none;
-}
-
 .templates {
     display: flex;
     flex-direction: row;
@@ -41,12 +37,32 @@
     display: flex;
     flex-direction: row;
     color: #fff;
+    border: 1px solid #fff;
+    padding: 10px;
+    text-decoration: none;
+    width: 120px;
+    height: 40px;
+    margin-right: 25px;
+    margin-bottom: 25px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    transition: all 0.5s ease-out;
 }
 
-.tree li .template:hover {
+.template:hover {
     box-shadow: rgb(109, 47, 47) 4px 4px 10px #fff;
     transition: all 0.5s ease-out;
     height: 80px;
+}
+
+.template p {
+    margin: 0;
+}
+
+.template__text {
+    font-size: 12px;
+    text-align: center;
 }
 
 .template__menu {
@@ -60,7 +76,7 @@
     transition: width 2s;
 }
 
-.tree li .template:hover .template__menu {
+.template:hover .template__menu {
     display: flex;
     justify-content: center;
     width: 118px;
@@ -68,9 +84,6 @@
     transition: width 2s;
 }
 
-.template p {
-    margin: 0;
-}
 
 i .template__icon [class^="oc-icon-"] {
     padding: 0;
@@ -78,14 +91,8 @@ i .template__icon [class^="oc-icon-"] {
 }
 
 .template__menu a:hover .icon-trash {
-    color: #red;
+    color: red;
 }
-
-.template__text {
-    font-size: 12px;
-    text-align: center;
-}
-
 
 
 .template__menu .icon {
@@ -137,20 +144,6 @@ i .template__icon [class^="oc-icon-"] {
     
 }
 
-.tree li .template {
-    border: 1px solid #fff;
-    padding: 10px;
-    text-decoration: none;
-    width: 120px;
-    height: 40px;
-    margin-right: 25px;
-    margin-bottom: 25px;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    transition: all 0.5s ease-out;
-}
-
 .tree li .parent_li > span {
     cursor: pointer;
 }
@@ -169,16 +162,13 @@ i .template__icon [class^="oc-icon-"] {
     left: 0;
 }
 
-.tree li .parent_li  >span:hover, .tree li .parent_li > span:hover + ul li span {
-    background: #eee;
-    border: 1px solid #94a0b4;
-    color: #000
+.tree a:hover {
+    color: #fff;
+    text-decoration: none;
 }
 
-.tree .but {
-    position: absolute;
-    right: -5px;
-    top: 3px;
+.tree .add {
+    height: 40px !important;
 }
 
 .box {
@@ -192,6 +182,7 @@ i .template__icon [class^="oc-icon-"] {
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 10;
 }
 
 .minus::before, .minus::after {
@@ -200,7 +191,8 @@ i .template__icon [class^="oc-icon-"] {
 }
 
 .minus::after {
-    width: 9px;
+    width: 4px;
     border-top: 1px solid #fff;
-    top: 9px;
+    top: 8px;
+    left: 19px;
 }

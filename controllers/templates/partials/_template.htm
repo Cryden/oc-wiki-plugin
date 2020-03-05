@@ -4,6 +4,12 @@
 
 <div class="tree">
     <ul>
+        <li>
+            <a class="template add" href="templates/create">
+                <i class="template__icon oc-icon-plus"></i>
+                <p class="template__text">New Template</p>
+            </a>
+        </li>
         <?php
             function templateTree($node, $controller)
             {
@@ -27,15 +33,12 @@
     </ul>
 </div>
 
-<a class="template" href="templates/create">
-    <img class="template__icon" src="./../../../plugins/crydesign/wiki/assets/images/add.svg" alt="logo">
-    <p class="template__text">New Template</p>
-</a>
+
 
 <script>
     $(function () {
         $('.tree li:has(ul)').addClass('parent_li').find(' > .template').attr('title', 'Collapse this branch')
-            .append('<div class="but minus"></div><div class="box"><i class="icon-minus"></i></div>');
+            .append('<div class="box minus"><i class="icon-minus"></i></div>');
         $('.template > .box').on('click', function (e) {
             var children = $(this).parent('.template').parent('li.parent_li').find(' > ul > li');
             if (children.is(":visible")) {
