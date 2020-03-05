@@ -37,22 +37,24 @@
 
 <script>
     $(function () {
-        $('.tree li:has(ul)').addClass('parent_li').find(' > .template').attr('title', 'Collapse this branch')
+        $('.tree li:has(ul)')
+            .addClass('parent_li')
+            .find(' > .template')
             .append('<div class="box minus"><i class="icon-minus"></i></div>');
-        $('.template > .box').on('click', function (e) {
-            var children = $(this).parent('.template').parent('li.parent_li').find(' > ul > li');
-            if (children.is(":visible")) {
-                children.hide('fast');
-                $(this).addClass('plus').removeClass('minus')
-                $(this).attr('title', 'Expand this branch').find(' > i').addClass('icon-plus')
-                    .removeClass('icon-minus');
-            } else {
-                children.show('fast');
-                $(this).addClass('minus').removeClass('plus')
-                $(this).attr('title', 'Collapse this branch').find(' > i').addClass(
-                    'icon-minus').removeClass('icon-plus');
-            }
-            e.stopPropagation();
+        $('.template > .box')
+            .on('click', function (e) {
+                var children = $(this).parent('.template').parent('li.parent_li').find(' > ul > li');
+                if (children.is(":visible")) {
+                    children.hide('fast');
+                    $(this).addClass('plus').removeClass('minus')
+                    $(this).find(' > i').addClass('icon-plus')
+                        .removeClass('icon-minus');
+                } else {
+                    children.show('fast');
+                    $(this).addClass('minus').removeClass('plus')
+                    $(this).find(' > i').addClass('icon-minus').removeClass('icon-plus');
+                }
+                e.stopPropagation();
         });
     });
 </script>

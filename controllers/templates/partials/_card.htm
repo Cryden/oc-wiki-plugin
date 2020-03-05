@@ -3,13 +3,14 @@
     <p class="template__text"><?= $title ?></p>
     <div class="template__menu">
         <div class="icon">
-            <a href="templates/update/<?= $id ?>"><i class="icon-edit"></i></a>
-            <a href="templates/create"><i class="icon-plus"></i></a>
+            <a class="icon__button" href="templates/update/<?= $id ?>"><i class="icon-edit"></i></a>
+            <a class="icon__button" href="templates/create?parent=<?= $id ?>"><i class="icon-plus"></i></a>
             <a
+                class="icon__button delete"
                 data-request="onDelete"
                 data-request-data="id: <?= $id ?>"
                 data-request-confirm="Are you sure you want to delete the selected Template?"
-                data-request-update="template: \'.templates\'">
+                data-request-update="'partials/template': '.wiki__content'">
                 <i class="icon-trash"></i>
             </a>
         </div>

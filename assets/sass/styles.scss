@@ -72,7 +72,7 @@
     right: 0;
     width: 0;
     height: 38px;
-    background: #CF4242;
+    background: #14212E;
     transition: width 2s;
 }
 
@@ -90,11 +90,6 @@ i .template__icon [class^="oc-icon-"] {
     margin: 0;
 }
 
-.template__menu a:hover .icon-trash {
-    color: red;
-}
-
-
 .template__menu .icon {
     display: flex;
     width: 100%;
@@ -103,11 +98,35 @@ i .template__icon [class^="oc-icon-"] {
     align-items: center;
 }
 
+.template__menu .icon .icon__button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.template__menu .icon .icon__button:hover {
+    width: 40px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #10161C;
+}
+
+.template__menu .icon .delete:hover {
+    background-color: #CF4242;
+}
+
 .template__menu a {
     color: #fff;
     text-decoration: none;
 }
 
+.tree {
+    box-sizing: border-box;
+}
 
 .tree li, .tree ul {
     list-style-type: none;
@@ -171,6 +190,10 @@ i .template__icon [class^="oc-icon-"] {
     height: 40px !important;
 }
 
+.tree .add:hover {
+    border: 1px solid #aaa;
+}
+
 .box {
     position: absolute;
     right: -10px;
@@ -183,6 +206,10 @@ i .template__icon [class^="oc-icon-"] {
     align-items: center;
     justify-content: center;
     z-index: 10;
+}
+
+.box:hover {
+    background-color: #14212E;
 }
 
 .minus::before, .minus::after {
