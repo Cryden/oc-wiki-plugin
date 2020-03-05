@@ -18,8 +18,7 @@
                 if (!$node->children->isEmpty()) {
                     echo '<ul>';
                     foreach ($node->children as $children){
-                        
-                            templateTree($children, $controller);
+                        templateTree($children, $controller);
                     }
                     echo '</ul>';
                 }
