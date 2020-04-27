@@ -63,32 +63,32 @@ class Article extends Model
         //$this->wiki_id = snake_case($this->template.$this->article['title']);
 
         // Article Permalink
-        if ($this->status !== 'created') {
-            // \Debugbar::info('not check');
-        } else {
-            \Debugbar::info('check');
-            $template = Template::where('index', $this->template)->first();
-            $permalink_pattern = $template->permalink;
-            $pattern = explode("/", $permalink_pattern);
-            array_shift($pattern);
-            $permalink = '';
+        // if ($this->status !== 'created') {
+        //     // \Debugbar::info('not check');
+        // } else {
+        //     \Debugbar::info('check');
+        //     $template = Template::where('index', $this->template)->first();
+        //     $permalink_pattern = $template->permalink;
+        //     $pattern = explode("/", $permalink_pattern);
+        //     array_shift($pattern);
+        //     $permalink = '';
 
-            foreach ($pattern as $value) {
-                if ($value{0} != ':') {
-                    $value = '/'.$value;
-                } else {
-                    foreach ($template->shema as $field) {
-                        if ($value == $field['alias']) {
-                            $field_title = $field['field_title'];
-                        }
-                    }
-                    $value = '/'.\Str::slug($this->article[$field_title]);
-                }
-                $permalink = $permalink.$value;
-            }
+        //     foreach ($pattern as $value) {
+        //         if ($value{0} != ':') {
+        //             $value = '/'.$value;
+        //         } else {
+        //             foreach ($template->shema as $field) {
+        //                 if ($value == $field['alias']) {
+        //                     $field_title = $field['field_title'];
+        //                 }
+        //             }
+        //             $value = '/'.\Str::slug($this->article[$field_title]);
+        //         }
+        //         $permalink = $permalink.$value;
+        //     }
 
-            $this->permalink = $permalink;
-            $this->status = "draft";
-        }
+        //     $this->permalink = $permalink;
+        //     $this->status = "draft";
+        // }
     }
 }

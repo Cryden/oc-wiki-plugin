@@ -40,8 +40,8 @@
     border: 1px solid #fff;
     padding: 10px;
     text-decoration: none;
-    width: 120px;
-    height: 40px;
+    width: 140px;
+    height: 80px;
     margin-right: 25px;
     margin-bottom: 25px;
     position: relative;
@@ -79,7 +79,8 @@
 .template:hover .template__menu {
     display: flex;
     justify-content: center;
-    width: 118px;
+    width: 137px;
+    right: 1px;
     height: 38px;
     transition: width 2s;
 }
@@ -151,13 +152,13 @@ i .template__icon [class^="oc-icon-"] {
     width: 12px;
     left: -12px;
     border-top: 1px solid #fff;
-    top: 13px;
+    top: 20px;
 }
 
 .tree li::after {
     width: 25px;
     height: 100%;
-    top: 13px;
+    top: 20px;
     left: -12px;
     border-left: 1px solid #fff;
     
@@ -197,7 +198,7 @@ i .template__icon [class^="oc-icon-"] {
 .box {
     position: absolute;
     right: -10px;
-    top: 3px;
+    top: 10px;
     background: #34495E;
     border: 1px solid #fff;
     height: 20px;

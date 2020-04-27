@@ -2,15 +2,15 @@ tabs:
     stretch: true
     defaultTab: Main
     icons:
-        Main: icon-user
-        Permalink: icon-group
-        Extension: icon-group
-        Shema: icon-group
+        Main: icon-cog
+        Permalink: icon-link
+        Extension: icon-wrench
+        Shema: icon-file-code-o
 
 
     fields:
 
-        # Sections
+        # Template Sections
 
         main_section:
             tab: Main
@@ -22,29 +22,29 @@ tabs:
 
         permalink_section:
             tab: Permalink
-            label: Main info
+            label: Permalink info
             type: section
             comment: This section contains the template Permalink.
             span: storm
             cssClass: col-lg-12
-            trigger:
-                action: show
-                field: type
-                condition: value[template], value[extension]
 
         shema_section:
             tab: Shema
             label: Article Template
             type: section
-            comment: This section contains info about the Article Shema.
+            comment: This section contains info about the Template Article Shema.
             span: storm
             cssClass: col-lg-12
-            trigger:
-                action: show
-                field: type
-                condition: value[template], value[extension]
 
-        # Basic fields
+        extension_section:
+            tab: Extension
+            label: Article Extensions
+            type: section
+            comment: This section contains info about the Template Extensions.
+            span: storm
+            cssClass: col-lg-12
+
+        # Main Section
 
         title:
             tab: Main
@@ -77,3 +77,50 @@ tabs:
             cssClass: col-lg-12
             type: textarea
             size: small
+
+        # Permalink Section
+
+        parent:
+            tab: Permalink
+            label: Parent Template
+            type: relation
+            nameFrom: title
+            emptyOption: ---
+            scope: template
+            span: storm
+            cssClass: col-lg-3
+
+        slug:
+            tab: Permalink
+            label: Slug Allias
+            span: storm
+            cssClass: col-lg-3
+
+        permalink:
+            tab: Permalink
+            label: Permalink Pattern
+            span: storm
+            cssClass: col-lg-6
+            dependsOn:
+                - parent
+                - slug
+
+        # Shema Section
+
+        shema:
+            tab: Shema
+            type: repeater
+            prompt: Add fields
+            span: storm
+            cssClass: col-lg-12
+            groups: $/crydesign/wiki/models/template/shema_fields.yaml
+
+        # Extensions Section
+
+        extension:
+            tab: Extension
+            type: repeater
+            prompt: Add extension
+            span: storm
+            cssClass: col-lg-12
+            groups: $/crydesign/wiki/models/template/extension_fields.yaml

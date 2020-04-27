@@ -1,6 +1,6 @@
 standart:
-    name: Standart
-    description: Basic fields
+    name: Standard
+    description: Standard fields
     icon: icon-list
     fields:
         field_title:
@@ -18,6 +18,7 @@ standart:
             label: Alias
             span: storm 
             cssClass: col-lg-3
+            
 relation:
     name: Relation
     description: Relation text field
@@ -39,16 +40,4 @@ relation:
             label: Alias
             span: storm 
             cssClass: col-lg-3
-filter:
-    name: Filter
-    description: Filter text field
-    icon: icon-filter
-    fields:
-        field_title:
-            label: Field Title
-            span: storm
-            cssClass: col-lg-6
-            required: true
-        field_type:
-            label: Field Type
 

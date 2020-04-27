@@ -5,8 +5,9 @@ namespace Crydesign\Wiki;
 use Backend;
 use Event;
 use Lang;
+use \System\Classes\PluginBase;
 
-class Plugin extends \System\Classes\PluginBase
+class Plugin extends PluginBase
 {
     public function boot() 
     {

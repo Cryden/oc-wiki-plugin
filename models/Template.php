@@ -24,7 +24,7 @@ class Template extends Model
      */
     protected $fillable = ['title'];
 
-    protected $jsonable = ['shema'];
+    protected $jsonable = ['shema', 'extension'];
 
     /**
      * @var array Relations
@@ -49,19 +49,15 @@ class Template extends Model
     public function beforeSave() 
     {
         // Set Permalink
-        if ($this->type != 'extension') {
-            if (!$this->parent) {
-                $this->parent_permalink = '';
-            } else {
-                $this->parent_permalink = $this->parent->permalink;
-                $this->permalink = $this->parent_permalink.'/'.$this->slug;
-            }
+        if (!$this->parent) {
+            $this->parent_permalink = '';
         } else {
-            $this->permalink = null;
+            $this->parent_permalink = $this->parent->permalink;
+            $this->permalink = $this->parent_permalink.'/'.$this->slug;
         }
 
         // Set Index
-        $this->index = str_limit('tmp_'.snake_case($this->type).'_'.snake_case($this->title).'_'.str_random(10), 30);
+        $this->index = 'tmp_'.snake_case($this->title);
     }
 
     public function afterSave() 

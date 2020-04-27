@@ -5,3 +5,7 @@
 1.0.2:
     - Add Article Models
     - create_articles_table.php
+1.0.3:
+    - Update Template Models
+1.0.5:
+    - update_templates_table_27042020000.php
