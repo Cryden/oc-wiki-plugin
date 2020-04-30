@@ -118,7 +118,7 @@ class Template extends Model
     public function filterFields($fields, $context = null)
     {
         // Set Permalink
-        if (isset($fields->parent) and $fields->type->value != 'extension') {
+        if (isset($fields->parent)) {
             if ($fields->parent->value == 0) {
                 $fields->permalink->value = '/'.$fields->slug->value;
             } else {

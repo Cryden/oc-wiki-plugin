@@ -62,14 +62,6 @@ tabs:
             span: storm
             cssClass: col-lg-4
 
-        type:
-            tab: Main
-            label: Type
-            type: dropdown
-            options: getTypeList
-            span: storm
-            cssClass: col-lg-12
-
         description:
             tab: Main
             label: Description

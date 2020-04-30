@@ -19,6 +19,7 @@ class CreateTemplatesTable extends Migration
             $table->string('slug')->nullable();
             $table->string('permalink')->nullable();
             $table->json('shema')->nullable();
+            $table->json('extension')->nullable();
             $table->integer('parent_id')->nullable();
             $table->string('parent_permalink')->nullable();
             $table->integer('nest_left')->nullable();
